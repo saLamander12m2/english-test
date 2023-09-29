@@ -2,9 +2,11 @@ package ru.school_activity.english_test.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -14,4 +16,7 @@ public class Users {
     private String email;
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Test> tests;
 }

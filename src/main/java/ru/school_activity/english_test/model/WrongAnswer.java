@@ -5,11 +5,13 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "wrong_answers")
-public class WrongAnswers {
+public class WrongAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "text")
     private String text;
-    private String questionId;
+    @ManyToOne
+    @JoinColumn(name = "test_id")
+    private Test test;
 }

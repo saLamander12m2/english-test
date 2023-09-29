@@ -10,5 +10,6 @@ public class Answer {
     private int id;
     @Column(name = "text")
     private String text;
-    private int questionId;
+    @OneToOne(mappedBy = "answer")
+    private TestQuestion testQuestion;
 }

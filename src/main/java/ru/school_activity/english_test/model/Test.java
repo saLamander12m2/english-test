@@ -11,7 +11,6 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int userId;
     @Column(name = "name")
     private String name;
     @Column(name = "date")
@@ -20,5 +19,11 @@ public class Test {
     private int questionTotal;
     @Column(name = "right_answers")
     private int rightAnswers;
-    private int verbsId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "topic_verb_id")
+    private TopicVerb topicVerb;
+
 }
