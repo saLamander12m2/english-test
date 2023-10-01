@@ -12,7 +12,7 @@ public class TopicVerb {
     private int id;
     @Column(name = "verb")
     private String verb;
-    @OneToMany(mappedBy = "tests")
+    @OneToMany(mappedBy = "topicVerb")
     private List<Test> tests;
     @OneToMany(mappedBy = "topicVerb")
     private List<TestQuestion> testQuestions;

@@ -15,7 +15,7 @@ public class TestQuestion {
     @OneToOne
     @JoinColumn(name = "answer_id")
     private Answer answer;
-    @OneToMany(mappedBy = "test")
+    @OneToMany(mappedBy = "testQuestion")
     private List<WrongAnswer> wrongAnswers;
     @ManyToOne
     @JoinColumn(name = "topic_verb_id")

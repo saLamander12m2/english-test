@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "tests")
@@ -25,5 +26,6 @@ public class Test {
     @ManyToOne
     @JoinColumn(name = "topic_verb_id")
     private TopicVerb topicVerb;
+
 
 }
