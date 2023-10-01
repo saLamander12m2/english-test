@@ -1,4 +1,4 @@
-package ru.school_activity.english_test.model;
+package ru.school_activity.english_test.entity;
 
 import jakarta.persistence.*;
 

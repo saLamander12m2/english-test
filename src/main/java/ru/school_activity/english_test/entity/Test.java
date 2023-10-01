@@ -1,10 +1,8 @@
-package ru.school_activity.english_test.model;
+package ru.school_activity.english_test.entity;
 
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.List;
 
 @Entity
 @Table(name = "tests")
