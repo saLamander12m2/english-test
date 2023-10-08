@@ -10,7 +10,8 @@ public class Answer {
     private int id;
     @Column(name = "text")
     private String text;
-    @OneToOne(mappedBy = "answer")
+    @OneToOne
+    @JoinColumn(name = "test_question_id")
     private TestQuestion testQuestion;
 
     public int getId() {

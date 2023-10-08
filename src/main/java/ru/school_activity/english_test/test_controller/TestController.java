@@ -48,7 +48,7 @@ public class TestController {
         answer.setTestQuestion(testQuestion);
         answerRepository.save(answer);
 
-
+        testQuestion.setAnswer(answer);
 
         User user = userRepository.findByEmail("djhfjds.yandex.ru");
 

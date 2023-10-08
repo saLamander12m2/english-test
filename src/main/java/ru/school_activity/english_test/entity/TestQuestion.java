@@ -12,8 +12,7 @@ public class TestQuestion {
     private int id;
     @Column(name = "sentence")
     private String sentence;
-    @OneToOne
-    @JoinColumn(name = "answer_id")
+    @OneToOne(mappedBy = "testQuestion")
     private Answer answer;
     @OneToMany(mappedBy = "testQuestion")
     private List<WrongAnswer> wrongAnswers;
