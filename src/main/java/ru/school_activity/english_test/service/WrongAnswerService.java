@@ -6,9 +6,8 @@ import ru.school_activity.english_test.repository.WrongAnswerRepository;
 
 @Service
 public class WrongAnswerService {
-    private WrongAnswerRepository wrongAnswerRepository;
+    private final WrongAnswerRepository wrongAnswerRepository;
 
-    @Autowired
     public WrongAnswerService(WrongAnswerRepository wrongAnswerRepository) {
         this.wrongAnswerRepository = wrongAnswerRepository;
     }

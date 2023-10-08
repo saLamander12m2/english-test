@@ -1,14 +1,14 @@
 package ru.school_activity.english_test.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.school_activity.english_test.repository.UserRepository;
 
 @Service
 public class UserService {
-    private UserService userService;
+    private final UserRepository userRepository;
 
-    @Autowired
-    public UserService(UserService userService) {
-        this.userService = userService;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 }

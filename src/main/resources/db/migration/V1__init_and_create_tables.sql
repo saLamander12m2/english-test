@@ -1,5 +1,5 @@
 CREATE TABLE if not exists users (
-    id int              PRIMARY KEY,
+    id SERIAL              PRIMARY KEY,
     name varchar,
     email varchar UNIQUE NOT NULL ,
     password varchar NOT NULL,
@@ -7,14 +7,14 @@ CREATE TABLE if not exists users (
 );
 
 CREATE TABLE if not exists topic_verbs (
-    id int            PRIMARY KEY,
-    verb varchar NOT NULL,
+    id SERIAL        PRIMARY KEY,
+    verb varchar NOT NULL UNIQUE,
     test_id int,
     test_questions_id int
 );
 
 CREATE TABLE if not exists test_questions (
-    id int              PRIMARY KEY,
+    id SERIAL              PRIMARY KEY,
     sentence varchar NOT NULL,
     answer_id int,
     wrong_answer_id int,
@@ -22,21 +22,21 @@ CREATE TABLE if not exists test_questions (
 );
 
 CREATE TABLE if not exists answers (
-    id int              PRIMARY KEY,
+    id SERIAL              PRIMARY KEY,
     text varchar NOT NULL,
     test_question_id int
 );
 
 CREATE TABLE if not exists wrong_answers (
-    id int              PRIMARY KEY,
+    id SERIAL              PRIMARY KEY,
     text varchar NOT NULL,
     test_questions_id int NOT NULL
 );
 
 CREATE TABLE if not exists tests (
-    id int             PRIMARY KEY,
+    id SERIAL            PRIMARY KEY,
     name varchar,
-    date timestamp NOT NULL,
+    date timestamp DEFAULT CURRENT_DATE,
     question_total int NOT NULL,
     right_answers int NOT NULL,
     topic_verb_id int NOT NULL,

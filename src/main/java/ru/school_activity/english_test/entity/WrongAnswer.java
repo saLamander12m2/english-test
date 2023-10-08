@@ -14,4 +14,28 @@ public class WrongAnswer {
     @ManyToOne
     @JoinColumn(name = "test_questions_id")
     private TestQuestion testQuestion;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public TestQuestion getTestQuestion() {
+        return testQuestion;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setTestQuestion(TestQuestion testQuestion) {
+        this.testQuestion = testQuestion;
+    }
 }

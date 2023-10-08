@@ -16,4 +16,36 @@ public class TopicVerb {
     private List<Test> tests;
     @OneToMany(mappedBy = "topicVerb")
     private List<TestQuestion> testQuestions;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getVerb() {
+        return verb;
+    }
+
+    public List<Test> getTests() {
+        return tests;
+    }
+
+    public List<TestQuestion> getTestQuestions() {
+        return testQuestions;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setVerb(String verb) {
+        this.verb = verb;
+    }
+
+    public void setTests(List<Test> tests) {
+        this.tests = tests;
+    }
+
+    public void setTestQuestions(List<TestQuestion> testQuestions) {
+        this.testQuestions = testQuestions;
+    }
 }

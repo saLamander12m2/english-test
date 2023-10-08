@@ -7,9 +7,8 @@ import ru.school_activity.english_test.repository.AnswerRepository;
 
 @Service
 public class AnswerService {
-    private AnswerRepository answerRepository;
+    private final AnswerRepository answerRepository;
 
-    @Autowired
     public AnswerService(AnswerRepository answerRepository) {
         this.answerRepository = answerRepository;
     }

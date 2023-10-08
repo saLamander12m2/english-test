@@ -1,15 +1,14 @@
 package ru.school_activity.english_test.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.school_activity.english_test.repository.TestRepository;
 
 @Service
 public class TestService {
 
-    private TestService testService;
+    private final TestRepository testRepository;
 
-    @Autowired
-    public TestService(TestService testService) {
-        this.testService = testService;
+    public TestService(TestRepository testRepository) {
+        this.testRepository = testRepository;
     }
 }

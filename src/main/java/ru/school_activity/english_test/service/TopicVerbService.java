@@ -6,9 +6,9 @@ import ru.school_activity.english_test.repository.TopicVerbRepository;
 
 @Service
 public class TopicVerbService {
-    private TopicVerbRepository topicVerbRepository;
+    private final TopicVerbRepository topicVerbRepository;
 
-    @Autowired
+
     public TopicVerbService(TopicVerbRepository topicVerbRepository) {
         this.topicVerbRepository = topicVerbRepository;
     }

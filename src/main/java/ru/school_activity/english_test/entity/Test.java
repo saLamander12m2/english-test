@@ -26,4 +26,59 @@ public class Test {
     private TopicVerb topicVerb;
 
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public int getQuestionTotal() {
+        return questionTotal;
+    }
+
+    public int getRightAnswers() {
+        return rightAnswers;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public TopicVerb getTopicVerb() {
+        return topicVerb;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setQuestionTotal(int questionTotal) {
+        this.questionTotal = questionTotal;
+    }
+
+    public void setRightAnswers(int rightAnswers) {
+        this.rightAnswers = rightAnswers;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setTopicVerb(TopicVerb topicVerb) {
+        this.topicVerb = topicVerb;
+    }
 }

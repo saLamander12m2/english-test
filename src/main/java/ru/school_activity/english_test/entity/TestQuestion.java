@@ -20,4 +20,44 @@ public class TestQuestion {
     @ManyToOne
     @JoinColumn(name = "topic_verb_id")
     private TopicVerb topicVerb;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getSentence() {
+        return sentence;
+    }
+
+    public Answer getAnswer() {
+        return answer;
+    }
+
+    public List<WrongAnswer> getWrongAnswers() {
+        return wrongAnswers;
+    }
+
+    public TopicVerb getTopicVerb() {
+        return topicVerb;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSentence(String sentence) {
+        this.sentence = sentence;
+    }
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public void setWrongAnswers(List<WrongAnswer> wrongAnswers) {
+        this.wrongAnswers = wrongAnswers;
+    }
+
+    public void setTopicVerb(TopicVerb topicVerb) {
+        this.topicVerb = topicVerb;
+    }
 }
