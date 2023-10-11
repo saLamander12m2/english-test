@@ -2,6 +2,7 @@ package ru.school_activity.english_test.test_controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.school_activity.english_test.entity.*;
@@ -38,35 +39,13 @@ public class TestController {
 
         TopicVerb topicVerb = topicVerbRepository.findByVerb("look");
 
-        TestQuestion testQuestion = new TestQuestion();
-        testQuestion.setSentence("Police look ... for criminal");
-        testQuestion.setTopicVerb(topicVerb);
-        testQuestionRepository.save(testQuestion);
-
-        Answer answer = new Answer();
-        answer.setText("look after");
-        answer.setTestQuestion(testQuestion);
-        answerRepository.save(answer);
-
         testQuestion.setAnswer(answer);
 
         User user = userRepository.findByEmail("djhfjds.yandex.ru");
 
-        Test test = new Test();
-        test.setName("look");
-        test.setQuestionTotal(15);
-        test.setRightAnswers(13);
-        test.setTopicVerb(topicVerb);
-        test.setUser(user);
-        testRepository.save(test);
-
-        WrongAnswer wrongAnswer = new WrongAnswer();
-        wrongAnswer.setText("in");
-        wrongAnswer.setTestQuestion(testQuestion);
-        wrongAnswerRepository.save(wrongAnswer);
-
         return "save";
     }
+
     @GetMapping(value = "/saveuser")
     public String saveUser(){
 
@@ -82,4 +61,61 @@ public class TestController {
 
         return "save-user";
     }
+
+    @GetMapping(value = "/savetopicverbs")
+    public String saveTopicVerbs(){
+        TopicVerb topicVerb = new TopicVerb();
+        topicVerb.setVerb("look");
+        topicVerbRepository.save(topicVerb);
+
+        return "save-topic-verbs";
+    }
+
+
+    @GetMapping(value = "/savetestquestions")
+    public String saveTestQuestions(){
+        TestQuestion testQuestion = new TestQuestion();
+        testQuestion.setSentence("Police look ... for criminal");
+        testQuestion.setTopicVerb(topicVerb);
+        testQuestion.setAnswer(answer);
+        testQuestionRepository.save(testQuestion);
+
+        return "save-test-questions";
+    }
+
+    @GetMapping(value = "/saveanswers")
+    public String saveAnswers(){
+        Answer answer = new Answer();
+        answer.setText("look after");
+        answer.setTestQuestion(testQuestion);
+        answerRepository.save(answer);
+
+        return "save-answers";
+    }
+
+    @GetMapping(value = "/savewronganswers")
+    public String saveWrongAnswers(){
+        WrongAnswer wrongAnswer = new WrongAnswer();
+        wrongAnswer.setText("in");
+        wrongAnswer.setTestQuestion(testQuestion);
+        wrongAnswerRepository.save(wrongAnswer);
+
+        return "save-wrong-answers";
+    }
+
+    @GetMapping(value = "savetest")
+    public String saveTest(){
+        Test test = new Test();
+        test.setName("look");
+        test.setQuestionTotal(15);
+        test.setRightAnswers(13);
+        test.setTopicVerb(topicVerb);
+        test.setUser(user);
+        testRepository.save(test);
+
+        return "save-test";
+    }
+
+
+
 }
