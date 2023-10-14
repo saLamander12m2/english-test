@@ -1,0 +1,72 @@
+GET http://localhost:8080/test/savewronganswers
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T233746.404.json
+
+###
+
+GET http://localhost:8080/test/saveanswer
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T233744.500.json
+
+###
+
+GET http://localhost:8080/test/savewronganswers
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T233723.404.json
+
+###
+
+GET http://localhost:8080/test/saveanswer
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T233631.500.json
+
+###
+
+GET http://localhost:8080/test/savetestquestions
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T233604.200.html
+
+###
+
+GET http://localhost:8080/test/savetopicverbs
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T233306.200.html
+
+###
+
+GET http://localhost:8080/test/saveuser
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T233107.500.json
+
+###
+
+GET http://localhost:8080/test/saveuser
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-10-14T233047.500.json
+
+###
+

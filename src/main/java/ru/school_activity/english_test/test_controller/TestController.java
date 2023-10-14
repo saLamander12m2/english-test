@@ -32,22 +32,8 @@ public class TestController {
     }
 
 
-
-    @GetMapping(value = "/save")
-    public String save() {
-        log.info("start test controller -> /save");
-
-        TopicVerb topicVerb = topicVerbRepository.findByVerb("look");
-
-        testQuestion.setAnswer(answer);
-
-        User user = userRepository.findByEmail("djhfjds.yandex.ru");
-
-        return "save";
-    }
-
     @GetMapping(value = "/saveuser")
-    public String saveUser(){
+    public String saveUser() {
 
         User user = new User();
         user.setName("Misha");
@@ -55,15 +41,11 @@ public class TestController {
         user.setPassword("1223hf");
         userRepository.save(user);
 
-        TopicVerb topicVerb = new TopicVerb();
-        topicVerb.setVerb("look");
-        topicVerbRepository.save(topicVerb);
-
         return "save-user";
     }
 
     @GetMapping(value = "/savetopicverbs")
-    public String saveTopicVerbs(){
+    public String saveTopicVerbs() {
         TopicVerb topicVerb = new TopicVerb();
         topicVerb.setVerb("look");
         topicVerbRepository.save(topicVerb);
@@ -73,38 +55,37 @@ public class TestController {
 
 
     @GetMapping(value = "/savetestquestions")
-    public String saveTestQuestions(){
+    public String saveTestQuestions() {
         TestQuestion testQuestion = new TestQuestion();
-        testQuestion.setSentence("Police look ... for criminal");
-        testQuestion.setTopicVerb(topicVerb);
-        testQuestion.setAnswer(answer);
+        testQuestion.setSentence("look after");
+        testQuestion.setTopicVerb(topicVerbRepository.findByVerb("look"));
         testQuestionRepository.save(testQuestion);
 
         return "save-test-questions";
     }
-
-    @GetMapping(value = "/saveanswers")
-    public String saveAnswers(){
+    @GetMapping(value = "/saveanswer")
+    public String saveAnswer() {
         Answer answer = new Answer();
-        answer.setText("look after");
-        answer.setTestQuestion(testQuestion);
+        answer.setText("after");
+        answer.setTestQuestion(testQuestionRepository.findById(1).get());
         answerRepository.save(answer);
-
-        return "save-answers";
+        return "save-answer-successful";
     }
 
     @GetMapping(value = "/savewronganswers")
-    public String saveWrongAnswers(){
+    public String saveWringAnswers() {
         WrongAnswer wrongAnswer = new WrongAnswer();
-        wrongAnswer.setText("in");
-        wrongAnswer.setTestQuestion(testQuestion);
+        wrongAnswer.setText("for");
+        wrongAnswer.setTestQuestion(testQuestionRepository.findById(1).get());
         wrongAnswerRepository.save(wrongAnswer);
-
         return "save-wrong-answers";
     }
 
+
     @GetMapping(value = "savetest")
-    public String saveTest(){
+    public String saveTest() {
+        TopicVerb topicVerb = new TopicVerb();
+        User user = new User();
         Test test = new Test();
         test.setName("look");
         test.setQuestionTotal(15);
@@ -115,7 +96,6 @@ public class TestController {
 
         return "save-test";
     }
-
 
 
 }
