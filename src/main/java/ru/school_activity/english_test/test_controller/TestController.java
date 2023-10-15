@@ -69,7 +69,7 @@ public class TestController {
         answer.setText("after");
         answer.setTestQuestion(testQuestionRepository.findById(1).get());
         answerRepository.save(answer);
-        return "save-answer-successful";
+        return "save-answers";
     }
 
     @GetMapping(value = "/savewronganswers")
@@ -82,16 +82,14 @@ public class TestController {
     }
 
 
-    @GetMapping(value = "savetest")
+    @GetMapping(value = "/savetest")
     public String saveTest() {
-        TopicVerb topicVerb = new TopicVerb();
-        User user = new User();
         Test test = new Test();
         test.setName("look");
         test.setQuestionTotal(15);
         test.setRightAnswers(13);
-        test.setTopicVerb(topicVerb);
-        test.setUser(user);
+        test.setTopicVerb(topicVerbRepository.findByVerb("look"));
+        test.setUser(userRepository.findByEmail("djhfjds.yandex.ru"));
         testRepository.save(test);
 
         return "save-test";

@@ -13,7 +13,8 @@ public class Test {
     @Column(name = "name")
     private String name;
     @Column(name = "date")
-    private Date date;
+    private long date = System.currentTimeMillis();
+
     @Column(name = "question_total")
     private int questionTotal;
     @Column(name = "right_answers")
@@ -34,7 +35,7 @@ public class Test {
         return name;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
@@ -62,7 +63,7 @@ public class Test {
         this.name = name;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
