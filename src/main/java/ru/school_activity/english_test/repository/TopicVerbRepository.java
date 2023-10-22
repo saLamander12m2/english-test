@@ -6,5 +6,5 @@ import ru.school_activity.english_test.entity.TopicVerb;
 
 @Repository
 public interface TopicVerbRepository extends JpaRepository<TopicVerb, Integer> {
-    public TopicVerb findByVerb(String verb);
+    TopicVerb findByVerb(String verb);
 }

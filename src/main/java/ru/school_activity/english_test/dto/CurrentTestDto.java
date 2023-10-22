@@ -1,43 +1,31 @@
 package ru.school_activity.english_test.dto;
 
-import org.springframework.beans.factory.annotation.Value;
-import ru.school_activity.english_test.entity.Answer;
+import lombok.Getter;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
 
 import java.util.List;
 
 public class CurrentTestDto {
+
+    @Getter
     private List<TestQuestion> testQuestions;
 
-    @Value("${app.testQuestionsQuantity}")
-    private int testQuestionsQuantity;
+    private int rightAnswersQuantity;
 
-    private int rightAnswersQuantity = 0;
-
-    private int currentTestQuestions = 0;
+    private int currentTestQuestions;
 
     private TopicVerb topicVerb;
 
     public CurrentTestDto(TopicVerb topicVerb) {
+        this.rightAnswersQuantity = 0;
+        this.currentTestQuestions = 0;
         this.topicVerb = topicVerb;
     }
 
 
-    public List<TestQuestion> getTestQuestions() {
-        return testQuestions;
-    }
-
     public void setTestQuestions(List<TestQuestion> testQuestions) {
         this.testQuestions = testQuestions;
-    }
-
-    public int getTestQuestionsQuantity() {
-        return testQuestionsQuantity;
-    }
-
-    public void setTestQuestionsQuantity(int testQuestionsQuantity) {
-        this.testQuestionsQuantity = testQuestionsQuantity;
     }
 
     public int getRightAnswersQuantity() {
@@ -56,11 +44,4 @@ public class CurrentTestDto {
         this.currentTestQuestions = currentTestQuestions;
     }
 
-    public TopicVerb getTopicVerb() {
-        return topicVerb;
-    }
-
-    public void setTopicVerb(TopicVerb topicVerb) {
-        this.topicVerb = topicVerb;
-    }
 }
