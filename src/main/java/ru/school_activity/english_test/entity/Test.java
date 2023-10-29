@@ -1,10 +1,16 @@
 package ru.school_activity.english_test.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tests")
 public class Test {
     @Id
@@ -25,7 +31,6 @@ public class Test {
     @ManyToOne
     @JoinColumn(name = "topic_verb_id")
     private TopicVerb topicVerb;
-
 
     public int getId() {
         return id;

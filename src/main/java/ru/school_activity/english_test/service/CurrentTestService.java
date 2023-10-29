@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.school_activity.english_test.dto.CurrentTestDto;
 import ru.school_activity.english_test.entity.Answer;
+import ru.school_activity.english_test.entity.Test;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
 import ru.school_activity.english_test.repository.TestQuestionRepository;
+import ru.school_activity.english_test.repository.TestRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +20,17 @@ import java.util.Random;
 public class CurrentTestService {
 
     private final TestQuestionRepository testQuestionRepository;
+    private final TestRepository testRepository;
     private static Random random;
 
     @Value("${app.testQuestionsQuantity}")
     private int testQuestionsQuantity;
 
-    public void createCurrentTest(TopicVerb topicVerb) {
+    public CurrentTestDto createCurrentTest(TopicVerb topicVerb) {
         CurrentTestDto currentTestDto = new CurrentTestDto(topicVerb);
         currentTestDto.setTestQuestions(fillTestQuestionList(topicVerb));
+
+        return currentTestDto;
     }
 
     public List<TestQuestion> fillTestQuestionList(TopicVerb topicVerb) {
@@ -39,9 +44,12 @@ public class CurrentTestService {
     }
 
     public void giveAnswer(CurrentTestDto currentTestDto, Answer answer) {
-        Answer rightAnswer = currentTestDto.getTestQuestions().get(currentTestDto.getCurrentTestQuestions()).getAnswer();
-        if (rightAnswer.getText().equals(answer.getText())) {
-            currentTestDto.setRightAnswersQuantity(currentTestDto.getRightAnswersQuantity() + 1);
+        if (currentTestDto.isAnswerRight(answer)) {
+            currentTestDto.incrementRightAnswerCounter();
+        }
+        currentTestDto.setStateEndIfNecessary();
+        if(currentTestDto.isEnd()){
+            testRepository.save(ConvertService.doFromCurrentTestDtoToTest(currentTestDto));
         }
         goNextQuestion(currentTestDto);
 
@@ -50,4 +58,6 @@ public class CurrentTestService {
     private void goNextQuestion(CurrentTestDto currentTestDto) {
         currentTestDto.setCurrentTestQuestions(currentTestDto.getCurrentTestQuestions() + 1);
     }
+
+
 }
