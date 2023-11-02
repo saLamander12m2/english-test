@@ -96,13 +96,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 23px;
+    font-weight: bold;
     margin-left: 0;
     margin-right: 10px;
+    background-color: lightgrey;
+    border-radius: 20px;
 }
+.answer__text {
+    margin-left: 0;
+    margin-right: 30px;
 
+}
 .answer__text:hover {
-    color: #57daff;
+    color: #2372ff;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -141,7 +148,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffa7ec;
+    background-color: lightgrey;
     color: black;
     border-radius: 10px;
 
