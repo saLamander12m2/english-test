@@ -7,7 +7,7 @@
     padding: 0;
 
 }
-.heaader-wrapper {
+.header-wrapper {
     position: absolute;
     top: 0;
     left: 0;
@@ -21,8 +21,8 @@
     height: 80px;
     margin-left: 30px;
     align-items: center;
-
 }
+
 body {
     width: 1200px;
     margin: auto;
@@ -75,8 +75,8 @@ body {
     justify-content: center;
     align-items: center;
     line-height: 1.5;
-    background-color: dimgrey;
-    color: #fff;
+    background-color: lightgrey;
+    color: #000;
     border-radius: 10px;
     padding: 4px 0 4px 30px;
 }
@@ -122,6 +122,7 @@ body {
 
 .answer__text {
     margin-left: 20px;
+    width: 100px;
 }
 
 
@@ -142,7 +143,7 @@ body {
     align-items: center;
 }
 
-.confirm__button {
+.button {
     width: 120px;
     height: 40px;
     display: flex;
@@ -154,19 +155,26 @@ body {
 
 }
 
-.confirm__button:hover {
+.button:hover {
     cursor: pointer;
     opacity: .8;
+}
+
+.button:active{
+    background-color: white;
+    transition: 0.2s;
 }
 
 .number {
     display: flex;
     align-items: center;
     margin-left: 800px;
+    margin-bottom: 40px;
 }
 
 .technical__support {
     font-size: 16px;
+
 }
 
 .tel {
@@ -178,4 +186,75 @@ body {
     height: 100px;
     display: flex;
     align-items: center;
+    background-color: lightgrey;
+}
+
+.footer-wrapper {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    background-color: lightgrey;
+    width: 100%;
+    z-index: -50;
+}
+.sign-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+
+.sign-form {
+    width: 500px;
+    height: 300px;
+    background-color: lightgrey;
+    border-radius: 5px;
+    -webkit-box-shadow: 17px 18px 11px 0 rgba(34, 60, 80, 0.29);
+    -moz-box-shadow: 17px 18px 11px 0 rgba(34, 60, 80, 0.29);
+    box-shadow: 17px 18px 11px 0 rgba(34, 60, 80, 0.29);
+}
+
+.sign-form__title {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.sign-form__input {
+    margin: 20px 30px 0 30px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    height: 30px;
+}
+
+input {
+    border: none;
+    margin: 0 8px 0 8px;
+    width: 100%;
+    padding-left: 5px;
+    outline: none;
+}
+
+
+.sign-form__button {
+    margin-left: 190px;
+    margin-top: 40px;
+    height: 40px;
+    width: 120px;
+}
+
+.btn-blue {
+    background-color: lightgrey;
+}
+
+.btn-blue:hover {
+    background-color: white;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.sign-up {
+    height: 350px;
 }

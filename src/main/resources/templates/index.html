@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/logo-png.png">
     <title>English Test</title>
 </head>
 <body>
-<header class="header">
-    <div class="logo">
-        <img src="images/logo-png.png" alt="logo" height="80px">
-    </div>
+<header>
+    <div th:insert = "~{fragment/header.html :: header}"></div>
+<!--    <div class="header">-->
+<!--        <div class="logo">-->
+<!--            <img src="/images/logo-png.png" alt="logo" height="80px">-->
+<!--        </div>-->
+<!--        <div class = "header-wrapper"></div>-->
+<!--    </div>-->
 </header>
-<div class="heaader-wrapper"></div>
+
 <main class="main">
     <div class="current__question">
         <div class="current__question__card">
@@ -21,7 +26,7 @@
     </div>
     <div class="question">
         <div class="question__text">
-            <p class="text">faksjhfjas fhsajkdfhaj hdfjkkafhafyhjkga jghasgfhshf  gahfjsg jgghsa faksjhfjas fhsajkdfhaj hdfjkkafhafyhjkga jghasgfhshf  gahfjsg jgghsa faksjhfjas fhsajkdfhaj hdfjkkafhafyhjkga jghasgfhshf  gahfjsg jgghsa</p>
+            <p class="text">Person run ... the burglar</p>
 
         </div>
     </div>
@@ -47,17 +52,14 @@
     </div>
     <div class="confirm__button__line">
         <div class="confirm">
-                <button class="confirm__button">
+                <button class="button">
                     Confirm answer
                 </button>
         </div>
     </div>
 </main>
-<footer class="footer">
-    <div class="number">
-        <h2 class="technical__support">Teхническая поддержка</h2>
-        <a href="tel: +7 756 56 43" class="tel"> +7 756 56 43 </a>
-    </div>
+<footer>
+    <div th:insert = "~{fragment/footer.html :: footer}"></div>
 </footer>
 </body>
 </html>
