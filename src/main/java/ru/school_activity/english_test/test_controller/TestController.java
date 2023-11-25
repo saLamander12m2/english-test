@@ -1,11 +1,15 @@
 package ru.school_activity.english_test.test_controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.school_activity.english_test.entity.*;
 import ru.school_activity.english_test.repository.*;
+import ru.school_activity.english_test.security.AppUserDetails;
+import ru.school_activity.english_test.service.AppUserDetailsService;
 
 
 @Slf4j
@@ -17,28 +21,28 @@ public class TestController {
     private final AnswerRepository answerRepository;
     private final TestQuestionRepository testQuestionRepository;
     private final TestRepository testRepository;
-    private final UserRepository userRepository;
+    private final AppUserRepository appUserRepository;
     private final WrongAnswerRepository wrongAnswerRepository;
 
 
-    public TestController(TopicVerbRepository topicVerbRepository, AnswerRepository answerRepository, TestQuestionRepository testQuestionRepository, TestRepository testRepository, UserRepository userRepository, WrongAnswerRepository wrongAnswerRepository) {
+    public TestController(TopicVerbRepository topicVerbRepository, AnswerRepository answerRepository, TestQuestionRepository testQuestionRepository, TestRepository testRepository, AppUserRepository appUserRepository, WrongAnswerRepository wrongAnswerRepository) {
         this.topicVerbRepository = topicVerbRepository;
         this.answerRepository = answerRepository;
         this.testQuestionRepository = testQuestionRepository;
         this.testRepository = testRepository;
-        this.userRepository = userRepository;
+        this.appUserRepository = appUserRepository;
         this.wrongAnswerRepository = wrongAnswerRepository;
     }
 
 
     @GetMapping(value = "/saveuser")
-    public String saveUser() {
+    public String savePerson() {
 
-        User user = new User();
-        user.setName("Misha");
-        user.setEmail("djhfjds.yandex.ru");
-        user.setPassword("1223hf");
-        userRepository.save(user);
+        AppUser appUser = new AppUser();
+        appUser.setUsername("Misha");
+        appUser.setEmail("djhfjds.yandex.ru");
+        appUser.setPassword("1223hf");
+        appUserRepository.save(appUser);
 
         return "save-user";
     }
@@ -88,10 +92,19 @@ public class TestController {
         test.setQuestionTotal(15);
         test.setRightAnswers(13);
         test.setTopicVerb(topicVerbRepository.findByVerb("look"));
-        test.setUser(userRepository.findByEmail("djhfjds.yandex.ru"));
+        test.setAppUser(appUserRepository.findByEmail("djhfjds.yandex.ru"));
         testRepository.save(test);
 
         return "save-test";
+    }
+
+    @GetMapping("/showUserInfo")
+    public String showUserInfo() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AppUserDetails appUserDetails = (AppUserDetails) authentication.getPrincipal();
+        System.out.println(appUserDetails.getAppUser());
+
+        return "hello";
     }
 
 

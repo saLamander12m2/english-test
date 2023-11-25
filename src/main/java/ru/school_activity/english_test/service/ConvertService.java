@@ -8,7 +8,7 @@ public class ConvertService {
         return Test.builder()
                 .questionTotal(currentTestDto.getTestQuestions().size())
                 .rightAnswers(currentTestDto.getRightAnswersQuantity())
-                .user(currentTestDto.getUser())
+                .appUser(currentTestDto.getAppUser())
                 .topicVerb(currentTestDto.getTopicVerb())
                 .build();
     }

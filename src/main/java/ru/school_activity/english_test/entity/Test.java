@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-
 @Entity
 @Builder
 @NoArgsConstructor
@@ -26,8 +24,8 @@ public class Test {
     @Column(name = "right_answers")
     private int rightAnswers;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "test_id")
+    private AppUser appUser;
     @ManyToOne
     @JoinColumn(name = "topic_verb_id")
     private TopicVerb topicVerb;
@@ -52,8 +50,8 @@ public class Test {
         return rightAnswers;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
     public TopicVerb getTopicVerb() {
@@ -80,8 +78,8 @@ public class Test {
         this.rightAnswers = rightAnswers;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public void setTopicVerb(TopicVerb topicVerb) {

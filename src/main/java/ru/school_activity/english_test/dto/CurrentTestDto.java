@@ -4,7 +4,7 @@ import lombok.Getter;
 import ru.school_activity.english_test.entity.Answer;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
-import ru.school_activity.english_test.entity.User;
+import ru.school_activity.english_test.entity.AppUser;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class CurrentTestDto {
     private TopicVerb topicVerb;
 
     private StateCurrentTest state;
-    private User user;
+    private AppUser appUser;
 
     public CurrentTestDto(TopicVerb topicVerb) {
         this.rightAnswersQuantity = 0;
@@ -69,12 +69,12 @@ public class CurrentTestDto {
     }
 
 
-    public User getUser() {
-        return user;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public TopicVerb getTopicVerb() {
