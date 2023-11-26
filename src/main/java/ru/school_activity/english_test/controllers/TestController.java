@@ -1,4 +1,4 @@
-package ru.school_activity.english_test.test_controller;
+package ru.school_activity.english_test.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.school_activity.english_test.entity.*;
 import ru.school_activity.english_test.repository.*;
 import ru.school_activity.english_test.security.AppUserDetails;
-import ru.school_activity.english_test.service.AppUserDetailsService;
 
 
 @Slf4j
