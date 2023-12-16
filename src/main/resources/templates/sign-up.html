@@ -12,29 +12,29 @@
 </header>
 <main class="main">
     <div class="sign-container">
-        <div class="sign-form sign-up">
+        <form class="sign-form sign-up" method="post" th:action="@{/sign-up}" th:object="${signUpDto}">
             <div class="sign-form__title">
                 <h2>Sign up</h2>
             </div>
             <div class="sign-form__input">
                 <label for="username"> </label>
-                <input type="text" id="username" name="username" placeholder="Enter your username">
+                <input type="text" id="username" name="username" placeholder="Enter your username" th:field="*{username}">
             </div>
             <div class="sign-form__input">
                 <label for="email"></label>
-                <input type="email" id="email" name="username" placeholder="Enter your email">
+                <input type="email" id="email" name="email" placeholder="Enter your email" th:field="*{email}">
             </div>
             <div class="sign-form__input">
                 <label for="password"></label>
                 <input type="password" id="password" name="password"
-                       placeholder="Enter your password">
+                       placeholder="Enter your password" th:field="*{password}">
             </div>
             <div class="sign-form__button">
                 <button class="button btn-blue">
                     Confirm
                 </button>
             </div>
-        </div>
+        </form>
     </div>
 </main>
 <footer>

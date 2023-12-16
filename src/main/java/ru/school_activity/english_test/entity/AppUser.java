@@ -1,11 +1,18 @@
 package ru.school_activity.english_test.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,15 +27,6 @@ public class AppUser {
 
     @OneToMany(mappedBy = "appUser")
     private List<Test> tests;
-
-    public AppUser(String username, String email, String password) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-    }
-
-   public AppUser(){}
-
 
     public int getId() {
         return id;

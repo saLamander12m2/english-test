@@ -37,8 +37,5 @@ public class AuthController {
 //        return "/index";
 //    }
 
-    @GetMapping(value = "/sign-up")
-    public String signUp() {
-        return "sign-up";
-    }
+
 }

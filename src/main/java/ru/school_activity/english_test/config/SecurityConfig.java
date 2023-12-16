@@ -32,15 +32,15 @@ public class SecurityConfig {
         http
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize ->
-                    authorize
-                            .requestMatchers("/sign-in", "/sign-up").permitAll()
-                            .requestMatchers("css/**", "images/**").permitAll()
-                            .requestMatchers("/**").authenticated()
-                            .requestMatchers("/index").authenticated()
-                            .anyRequest().permitAll()
+                        authorize
+                                .requestMatchers("/sign-in", "/sign-up").permitAll()
+                                .requestMatchers("css/**", "images/**").permitAll()
+                                .requestMatchers("/index").authenticated()
+//                                .requestMatchers("/**").authenticated()
+                                .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
-                       .loginPage("/sign-in")
+                        .loginPage("/sign-in")
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/", true)
                         .permitAll()
