@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div th:insert="~{fragment/header.html :: header}"></div>
+</header>
+<main class="main">
+    <div class="sign-container">
+        <form th:method="post" th:action="@{/login}">
+            <div class="sign-form">
+                <div class="sign-form__title">
+                    <h2>Sign in</h2>
+                </div>
+                <div class="sign-form__input">
+                    <label for="username"></label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username">
+                </div>
+                <div class="sign-form__input">
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password"
+                           placeholder="Enter your password">
+                </div>
+                <div class="sign-form__button">
+                    <button class="button btn-blue">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+            <div>
+                <p>If you don't have account, please <a href="/sign-up">sign up</a></p>
+
+            </div>
+        </form>
+    </div>
+</main>
+<footer>
+    <div th:insert="~{fragment/old-footer.html :: footer}"></div>
+</footer>
+</body>
+</html>

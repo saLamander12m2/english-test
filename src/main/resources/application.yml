@@ -1,3 +1,13 @@
 app:
   testQuestionsQuantity: 10
 
+logging:
+  level:
+    root: info
+
+spring:
+  jpa:
+    show-sql: true
+
+
+

@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import ru.school_activity.english_test.customException.UserNotFoundException;
 import ru.school_activity.english_test.entity.AppUser;
 import ru.school_activity.english_test.repository.AppUserRepository;
 import ru.school_activity.english_test.security.AppUserDetails;
