@@ -23,7 +23,7 @@ public class AuthProviderImpl implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         String username = authentication.getName();
-        UserDetails appUserDetails = appUserDetailsService.loadUserByUsername(username);
+        UserDetails appUserDetails = appUserDetailsService.loadUserByEmail(username);
 
         String password = authentication.getCredentials().toString();
 

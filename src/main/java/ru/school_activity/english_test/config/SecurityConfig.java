@@ -22,9 +22,9 @@ public class SecurityConfig {
     private final AuthProviderImpl authProvider;
 
 
-    protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(authProvider);
-    }
+//    protected void configure(AuthenticationManagerBuilder auth) {
+//        auth.authenticationProvider(authProvider);
+//    }
 
 
     @Bean

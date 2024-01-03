@@ -5,7 +5,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.school_activity.english_test.customException.UserNotFoundException;
 import ru.school_activity.english_test.entity.AppUser;
 import ru.school_activity.english_test.repository.AppUserRepository;
 import ru.school_activity.english_test.security.AppUserDetails;
@@ -20,7 +19,15 @@ public class AppUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<AppUser> optionalAppUser = appUserRepository.findByUsername(username);
-        if (optionalAppUser.isEmpty()){
+        if (optionalAppUser.isEmpty()) {
+            throw new UsernameNotFoundException("User not found!");
+        }
+        return new AppUserDetails(optionalAppUser.get());
+    }
+
+    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+        Optional<AppUser> optionalAppUser = Optional.ofNullable(appUserRepository.findByEmail(email));
+        if (optionalAppUser.isEmpty()) {
             throw new UsernameNotFoundException("User not found!");
         }
         return new AppUserDetails(optionalAppUser.get());
