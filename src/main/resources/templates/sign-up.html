@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+    <link rel="icon" href="/images/logo-png.png">
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <title>Sign up</title>
@@ -180,10 +181,10 @@
             <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
             <label for="password" th:field="*{password}">Password</label>
         </div>
+        <button class="btn btn-primary w-100 mt-2 py-2" type="submit">Sign up</button>
         <div class="row mt-2">
             <p>If you have account, please <a href="/sign-in">Sign in</a></p>
         </div>
-        <button class="btn btn-primary w-100 mt-2 py-2" type="submit">Sign up</button>
     </form>
     <div th:if="${warning != ''}" class="mt-2"><span class="text-warning" th:text="${warning}"/></div>
 </main>

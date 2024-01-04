@@ -24,9 +24,10 @@ public class TestController {
 //        return "index";
 //    }
 //
-//    @GetMapping(value = "/footer")
-//    public String getFooter() {
-//        return "fragment/new-footer";
-//    }
+    @GetMapping(value = "/home")
+    public String getHome() {
+        return "home";
+    }
+
 
 }

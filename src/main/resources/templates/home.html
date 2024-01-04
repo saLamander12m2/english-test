@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>English Test</title>
+    <link rel="icon" href="/images/logo-png.png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex vh-100 flex-column container-xxl">
+<header>
+    <div th:insert="~{fragment/header.html :: header}"></div>
+</header>
+<main>
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="test-tab" data-bs-toggle="tab" data-bs-target="#test-tab-pane" type="button"
+                    role="tab" aria-controls="test-tab-pane" aria-selected="false">New Test
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history-tab-pane"
+                    type="button" role="tab" aria-controls="history-tab-pane" aria-selected="false">History
+            </button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade justify-content-center" id="test-tab-pane" role="tabpanel" aria-labelledby="test-tab"
+             tabindex="0">
+            <!--            <div class="row mt-2 justify-content-center ">-->
+            <!--                <div class="col-6">-->
+            <!--                    <p class="text-white h4"></p>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="row mt-3 justify-content-center">-->
+            <!--                <div class="col-3 p-3 mb-5 bg-body-tertiary rounded ms-4 justify-content-center">-->
+            <!--                    <h3>Run</h3>-->
+            <!--                    <a href="/" class="btn btn-primary mt-3">Start</a>-->
+            <!--                </div>-->
+            <!--                <div class="col-3 p-3 mb-5 bg-body-tertiary rounded ms-4 justify-content-center">-->
+            <!--                    <h3>look</h3>-->
+            <!--                    <a href="/" class="btn btn-primary mt-3">Start</a>-->
+            <!--                </div>-->
+            <!--                <div class="col-3 p-3 mb-5 bg-body-tertiary rounded ms-4 justify-content-center">-->
+            <!--                    <h3>Go</h3>-->
+            <!--                    <a href="/" class="btn btn-primary mt-3 ">Start</a>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <div class="row mt-3 justify-content-center">
+                <div class="dropdown-center">
+                    <button class="btn col-12 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Please choose the topic
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Run</a></li>
+                        <li><a class="dropdown-item" href="#">Go</a></li>
+                        <li><a class="dropdown-item" href="#">Look</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-lg-auto">
+                <div class="col-5 justify-content-center">
+                    <a href="/" class="btn btn-lg btn-outline-primary">Start</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="history-tab-pane" role="tabpanel" aria-labelledby="history-tab" tabindex="0">
+            world
+        </div>
+    </div>
+</main>
+<footer th:insert="~{fragment/footer.html :: footer}" class="mt-auto"></footer>
+
+<script src="/js/bootstrap.js"></script>
+<script src="/js/color-modes.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
