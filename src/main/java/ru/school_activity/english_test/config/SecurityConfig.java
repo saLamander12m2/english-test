@@ -11,7 +11,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import ru.school_activity.english_test.service.AppUserDetailsService;
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -20,11 +24,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final AuthProviderImpl authProvider;
+    private AppUserDetailsService appUserDetailsService;
 
 
-//    protected void configure(AuthenticationManagerBuilder auth) {
-//        auth.authenticationProvider(authProvider);
-//    }
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authProvider);
+
+//        auth
+//                .userDetailsService(appUserDetailsService)
+//                .passwordEncoder(passwordEncoder());
+    }
 
 
     @Bean
@@ -43,7 +52,16 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
+                .logout(logout -> logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .permitAll()
+                )
                 .authenticationProvider(authProvider);
         return http.build();
+    }
+
+    @Bean
+    public static PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder(12);
     }
 }

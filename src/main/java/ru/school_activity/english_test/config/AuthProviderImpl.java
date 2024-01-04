@@ -7,6 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.school_activity.english_test.service.AppUserDetailsService;
 
@@ -17,6 +19,7 @@ import java.util.Collections;
 public class AuthProviderImpl implements AuthenticationProvider {
 
     private final AppUserDetailsService appUserDetailsService;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
