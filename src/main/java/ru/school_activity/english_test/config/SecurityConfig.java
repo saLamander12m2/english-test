@@ -39,6 +39,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize ->
                         authorize
@@ -49,7 +50,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/sign-in")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/start", true)
                         .permitAll()
                 )
                 .logout(logout -> logout

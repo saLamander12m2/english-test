@@ -2,6 +2,7 @@ package ru.school_activity.english_test.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name = "topic_verbs")
 public class TopicVerb {
     @Id
@@ -20,6 +22,10 @@ public class TopicVerb {
     private List<Test> tests;
     @OneToMany(mappedBy = "topicVerb")
     private List<TestQuestion> testQuestions;
+
+    public TopicVerb(String verb) {
+        this.verb = verb;
+    }
 
 
     @Override

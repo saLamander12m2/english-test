@@ -12,7 +12,7 @@ CREATE TABLE if not exists topic_verbs (
 
 CREATE TABLE if not exists test_questions (
     id SERIAL              PRIMARY KEY,
-    sentence varchar NOT NULL,
+    sentence varchar NOT NULL UNIQUE,
     topic_verb_id int NOT NULL
 );
 

@@ -20,9 +20,9 @@ public class StartController {
 
     @GetMapping()
     public String getHome() {
-        log.info("Hello controller");
-        List<TopicVerb> listQuestions = topicVerbService.getTopicVerbList();
-        listQuestions.forEach(System.out::println);
+//        log.info("Hello controller");
+//        List<TopicVerb> listQuestions = topicVerbService.getTopicVerbList();
+//        listQuestions.forEach(System.out::println);
         return "start";
     }
 }

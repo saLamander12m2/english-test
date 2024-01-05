@@ -1,20 +1,18 @@
 package ru.school_activity.english_test.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.school_activity.english_test.entity.Answer;
 import ru.school_activity.english_test.repository.AnswerRepository;
 
 @Service
+@RequiredArgsConstructor
 public class AnswerService {
+
     private final AnswerRepository answerRepository;
 
-    public AnswerService(AnswerRepository answerRepository) {
-        this.answerRepository = answerRepository;
-    }
-
-    public void save (Answer answer) {
-        // какая-то бизнес логика
-        answerRepository.save(answer);
+    public Answer save (Answer answer) {
+        return answerRepository.save(answer);
     }
 }

@@ -12,4 +12,5 @@ import java.util.List;
 public interface TestQuestionRepository extends JpaRepository<TestQuestion, Integer> {
 
     List<TestQuestion> findByTopicVerb(TopicVerb topicVerb);
+
 }

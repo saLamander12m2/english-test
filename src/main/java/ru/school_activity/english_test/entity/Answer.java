@@ -1,8 +1,15 @@
 package ru.school_activity.english_test.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "answers")
 public class Answer {
     @Id
@@ -14,27 +21,12 @@ public class Answer {
     @JoinColumn(name = "test_question_id")
     private TestQuestion testQuestion;
 
-    public int getId() {
-        return id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public TestQuestion getTestQuestion() {
-        return testQuestion;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setText(String text) {
+    public Answer(String text) {
         this.text = text;
     }
 
-    public void setTestQuestion(TestQuestion testQuestion) {
+    public Answer(String text, TestQuestion testQuestion) {
+        this.text = text;
         this.testQuestion = testQuestion;
     }
 }
