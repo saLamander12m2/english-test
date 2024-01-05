@@ -22,12 +22,6 @@ public class TestController {
 //    @GetMapping(value = "/index")
 //    public String getIndex() {
 //        return "index";
-//    }
-//
-    @GetMapping(value = "/home")
-    public String getHome() {
-        return "home";
-    }
 
 
 }

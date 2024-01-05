@@ -18,20 +18,10 @@ public class AuthController {
     @GetMapping()
     public String signIn(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        log.info("try auth for user -> {}", authentication.getPrincipal().toString());
         boolean isAuthenticated = !(authentication instanceof AnonymousAuthenticationToken);
         model.addAttribute(isAuthenticated);
         return "/sign-in";
     }
-
-
-// доставали из userDetails объект appUser и из него поле username
-//    @GetMapping("/")
-//    public String getName(Model model, @AuthenticationPrincipal AppUserDetails appUserDetails){
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        model.addAttribute("name", appUserDetails.getAppUser().getUsername());
-//        return "/index";
-//    }
 
 
 }
