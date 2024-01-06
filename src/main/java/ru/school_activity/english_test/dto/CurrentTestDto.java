@@ -15,7 +15,7 @@ public class CurrentTestDto {
 
     private int rightAnswersQuantity;
 
-    private int currentTestQuestions;
+    private int currentTestQuestion;
 
     private TopicVerb topicVerb;
 
@@ -24,7 +24,7 @@ public class CurrentTestDto {
 
     public CurrentTestDto(TopicVerb topicVerb) {
         this.rightAnswersQuantity = 0;
-        this.currentTestQuestions = 0;
+        this.currentTestQuestion = 0;
         this.topicVerb = topicVerb;
         this.state = StateCurrentTest.ONGOING;
     }
@@ -42,12 +42,12 @@ public class CurrentTestDto {
         this.rightAnswersQuantity = rightAnswersQuantity;
     }
 
-    public int getCurrentTestQuestions() {
-        return currentTestQuestions;
+    public int getCurrentTestQuestion() {
+        return currentTestQuestion;
     }
 
-    public void setCurrentTestQuestions(int currentTestQuestions) {
-        this.currentTestQuestions = currentTestQuestions;
+    public void setCurrentTestQuestion(int currentTestQuestion) {
+        this.currentTestQuestion = currentTestQuestion;
     }
 
     public boolean isEnd() {
@@ -55,13 +55,19 @@ public class CurrentTestDto {
     }
 
     public void setStateEndIfNecessary() {
-        if (testQuestions.size() - 1 == currentTestQuestions) {
+        if (testQuestions.size() - 1 == currentTestQuestion) {
             state = StateCurrentTest.END;
         }
     }
 
     public boolean isAnswerRight(Answer answer) {
-        return answer.getText().equals(testQuestions.get(currentTestQuestions).getAnswer().getText());
+        return answer
+                .getText()
+                .equals(testQuestions
+                        .get(currentTestQuestion)
+                        .getAnswer()
+                        .getText()
+                );
     }
 
     public void incrementRightAnswerCounter(){

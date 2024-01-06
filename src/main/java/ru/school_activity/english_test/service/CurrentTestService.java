@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.school_activity.english_test.dto.CurrentTestDto;
 import ru.school_activity.english_test.entity.Answer;
-import ru.school_activity.english_test.entity.Test;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
 import ru.school_activity.english_test.repository.TestQuestionRepository;
@@ -21,7 +20,7 @@ public class CurrentTestService {
 
     private final TestQuestionRepository testQuestionRepository;
     private final TestRepository testRepository;
-    private static Random random;
+    private static final Random random = new Random();
 
     @Value("${app.testQuestionsQuantity}")
     private int testQuestionsQuantity;
@@ -56,7 +55,7 @@ public class CurrentTestService {
     }
 
     private void goNextQuestion(CurrentTestDto currentTestDto) {
-        currentTestDto.setCurrentTestQuestions(currentTestDto.getCurrentTestQuestions() + 1);
+        currentTestDto.setCurrentTestQuestion(currentTestDto.getCurrentTestQuestion() + 1);
     }
 
 

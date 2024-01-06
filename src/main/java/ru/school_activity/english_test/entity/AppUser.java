@@ -25,7 +25,16 @@ public class AppUser {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(mappedBy = "appUser")
-    private List<Test> tests;
+//    @OneToMany(mappedBy = "appUser")
+//    private List<Test> tests;
 
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+//                ", tests=" + tests +
+                '}';
+    }
 }

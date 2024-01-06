@@ -51,15 +51,15 @@ public class AdminController {
             int i = 0;
 
             while ((line = reader.readLine()) != null) {
-
                 String[] stringArray = line.split(",");
+
                 System.out.println(Arrays.toString(stringArray));
                 i++;
 
                 TopicVerb topicVerb;
-                topicVerb = topicVerbService.getTopicVerbByVerb(stringArray[1]);
+                topicVerb = topicVerbService.getTopicVerbByVerb(stringArray[1].toLowerCase());
                 if (topicVerb == null) {
-                    topicVerb = new TopicVerb(stringArray[1]);
+                    topicVerb = new TopicVerb(stringArray[1].toLowerCase());
                 }
 
                 TestQuestion testQuestion = new TestQuestion(stringArray[2]);
@@ -67,11 +67,11 @@ public class AdminController {
                 testQuestionService.save(testQuestion);
 
                 try {
-                    Answer answer = new Answer(stringArray[3], testQuestion);
+                    Answer answer = new Answer(stringArray[3].toLowerCase(), testQuestion);
 
                     List<WrongAnswer> wrongAnswers = new ArrayList<>();
                     for (int y = 4; y < 7; y++) {
-                        wrongAnswers.add(new WrongAnswer(stringArray[y], testQuestion));
+                        wrongAnswers.add(new WrongAnswer(stringArray[y].toLowerCase(), testQuestion));
                     }
 
                     answerService.save(answer);
