@@ -18,8 +18,8 @@ public class TopicVerb {
     private int id;
     @Column(name = "verb")
     private String verb;
-    @OneToMany(mappedBy = "topicVerb")
-    private List<Test> tests;
+//    @OneToMany(mappedBy = "topicVerb")
+//    private List<Test> tests;
     @OneToMany(mappedBy = "topicVerb")
     private List<TestQuestion> testQuestions;
 
@@ -33,7 +33,7 @@ public class TopicVerb {
         return "TopicVerb{" +
                 "id=" + id +
                 ", verb='" + verb + '\'' +
-                ", tests=" + tests +
+//                ", tests=" + tests +
                 ", testQuestions=" + testQuestions +
                 '}';
     }

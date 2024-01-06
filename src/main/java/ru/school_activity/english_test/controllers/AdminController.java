@@ -74,9 +74,6 @@ public class AdminController {
                         wrongAnswers.add(new WrongAnswer(stringArray[y], testQuestion));
                     }
 
-//                    testQuestion.setAnswer(answer);
-//                    testQuestion.setWrongAnswers(wrongAnswers);
-
                     answerService.save(answer);
                     wrongAnswers.forEach(wrongAnswerService::save);
 
@@ -90,7 +87,7 @@ public class AdminController {
             return "redirect:/admin";
 
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
 
         return "admin-page";
