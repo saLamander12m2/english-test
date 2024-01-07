@@ -42,21 +42,19 @@ public class CurrentTestService {
         return currentQuestions;
     }
 
-    public void giveAnswer(CurrentTestDto currentTestDto, Answer answer) {
+    public void giveAnswer(CurrentTestDto currentTestDto, String answer) {
         if (currentTestDto.isAnswerRight(answer)) {
             currentTestDto.incrementRightAnswerCounter();
         }
         currentTestDto.setStateEndIfNecessary();
-        if(currentTestDto.isEnd()){
+        if (currentTestDto.isEnd()) {
             testRepository.save(ConvertService.doFromCurrentTestDtoToTest(currentTestDto));
+        } else {
+            goNextQuestion(currentTestDto);
         }
-        goNextQuestion(currentTestDto);
-
     }
 
     private void goNextQuestion(CurrentTestDto currentTestDto) {
         currentTestDto.setCurrentTestQuestion(currentTestDto.getCurrentTestQuestion() + 1);
     }
-
-
 }

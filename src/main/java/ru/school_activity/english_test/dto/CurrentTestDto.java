@@ -1,6 +1,7 @@
 package ru.school_activity.english_test.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import ru.school_activity.english_test.entity.Answer;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
@@ -8,6 +9,7 @@ import ru.school_activity.english_test.entity.AppUser;
 
 import java.util.List;
 
+@NoArgsConstructor
 public class CurrentTestDto {
 
     @Getter
@@ -60,9 +62,8 @@ public class CurrentTestDto {
         }
     }
 
-    public boolean isAnswerRight(Answer answer) {
-        return answer
-                .getText()
+    public boolean isAnswerRight(String answer) {
+        return answer.toLowerCase()
                 .equals(testQuestions
                         .get(currentTestQuestion)
                         .getAnswer()
@@ -70,8 +71,12 @@ public class CurrentTestDto {
                 );
     }
 
-    public void incrementRightAnswerCounter(){
+    public void incrementRightAnswerCounter() {
         rightAnswersQuantity++;
+    }
+
+    public void incrementCurrentTestQuestion() {
+        currentTestQuestion++;
     }
 
 
@@ -85,5 +90,17 @@ public class CurrentTestDto {
 
     public TopicVerb getTopicVerb() {
         return topicVerb;
+    }
+
+    @Override
+    public String toString() {
+        return "CurrentTestDto{" +
+                "testQuestions=" + testQuestions +
+                ", rightAnswersQuantity=" + rightAnswersQuantity +
+                ", currentTestQuestion=" + currentTestQuestion +
+                ", topicVerb=" + topicVerb +
+                ", state=" + state +
+                ", appUser=" + appUser +
+                '}';
     }
 }

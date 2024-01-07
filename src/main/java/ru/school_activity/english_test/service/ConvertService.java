@@ -2,6 +2,7 @@ package ru.school_activity.english_test.service;
 
 import ru.school_activity.english_test.dto.CurrentTestDto;
 import ru.school_activity.english_test.dto.CurrentTestQuestionsDto;
+import ru.school_activity.english_test.dto.EndTestDto;
 import ru.school_activity.english_test.entity.Test;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.WrongAnswer;
@@ -35,6 +36,13 @@ public class ConvertService {
                 .testQuestion(testQuestion.getSentence())
                 .testQuestionTotal(currentTestDto.getTestQuestions().size())
                 .answers(answers)
+                .build();
+    }
+
+    public static EndTestDto doFromCurrentTestDtoToEndTestDto(CurrentTestDto currentTestDto){
+        return EndTestDto.builder()
+                .RightAnswerQuantity(currentTestDto.getRightAnswersQuantity())
+                .totalTestQuestionQuantity(currentTestDto.getTestQuestions().size())
                 .build();
     }
 }

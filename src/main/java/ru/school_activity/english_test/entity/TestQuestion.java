@@ -20,7 +20,7 @@ public class TestQuestion {
     private String sentence;
     @OneToOne(mappedBy = "testQuestion")
     private Answer answer;
-    @OneToMany(mappedBy = "testQuestion", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "testQuestion", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<WrongAnswer> wrongAnswers;
     @ManyToOne
     @JoinColumn(name = "topic_verb_id")

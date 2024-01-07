@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>English Test</title>
+    <link rel="icon" href="/images/logo-png.png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex vh-100 flex-column container-xxl">
+<header>
+    <div th:insert="~{fragment/header.html :: header}"></div>
+</header>
+<main>
+    <div class="row justify-content-center">
+        <div class="col-3 text-center">
+            <h1>The test is over</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-6 justify-content-center">
+            <div class="text-center">
+                Всего вопросов: <span th:text="${endTestDto.totalTestQuestionQuantity}"></span>
+            </div>
+            <div class="text-center">
+                Правильных ответов: <span th:text="${endTestDto.rightAnswerQuantity}"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-6 text-center">
+            <a href="/start" class="btn btn-outline-primary">Go to new test or all your results</a>
+        </div>
+    </div>
+</main>
+<footer th:insert="~{fragment/footer.html :: footer}" class="mt-auto"></footer>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/color-modes.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

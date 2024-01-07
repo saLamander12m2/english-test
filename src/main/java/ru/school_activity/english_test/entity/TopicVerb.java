@@ -20,7 +20,7 @@ public class TopicVerb {
     private String verb;
 //    @OneToMany(mappedBy = "topicVerb")
 //    private List<Test> tests;
-    @OneToMany(mappedBy = "topicVerb")
+    @OneToMany(mappedBy = "topicVerb", fetch = FetchType.EAGER)
     private List<TestQuestion> testQuestions;
 
     public TopicVerb(String verb) {

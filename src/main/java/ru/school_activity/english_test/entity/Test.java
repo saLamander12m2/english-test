@@ -2,8 +2,11 @@ package ru.school_activity.english_test.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,8 +19,9 @@ public class Test {
     private int id;
     @Column(name = "name")
     private String name;
+    @CreatedDate
     @Column(name = "date")
-    private long date = System.currentTimeMillis();
+    private Long date;
 
     @Column(name = "question_total")
     private int questionTotal;

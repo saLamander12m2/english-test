@@ -31,7 +31,7 @@ CREATE TABLE if not exists wrong_answers (
 CREATE TABLE if not exists tests (
     id SERIAL            PRIMARY KEY,
     name varchar,
-    date bigint,
+    date bigint NOT NULL,
     question_total int NOT NULL,
     right_answers int NOT NULL,
     topic_verb_id int NOT NULL,

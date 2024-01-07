@@ -2,10 +2,8 @@ package ru.school_activity.english_test.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +13,6 @@ import ru.school_activity.english_test.entity.Answer;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
 import ru.school_activity.english_test.entity.WrongAnswer;
-import ru.school_activity.english_test.repository.TopicVerbRepository;
 import ru.school_activity.english_test.service.AnswerService;
 import ru.school_activity.english_test.service.TestQuestionService;
 import ru.school_activity.english_test.service.TopicVerbService;
@@ -39,7 +36,7 @@ public class AdminController {
 
     @GetMapping()
     public String getAdminPage() {
-        return "admin-page";
+        return "admin";
     }
 
     @PostMapping(value = "/upload")
@@ -60,6 +57,7 @@ public class AdminController {
                 topicVerb = topicVerbService.getTopicVerbByVerb(stringArray[1].toLowerCase());
                 if (topicVerb == null) {
                     topicVerb = new TopicVerb(stringArray[1].toLowerCase());
+                    topicVerbService.save(topicVerb);
                 }
 
                 TestQuestion testQuestion = new TestQuestion(stringArray[2]);
@@ -90,6 +88,6 @@ public class AdminController {
             e.printStackTrace();
         }
 
-        return "admin-page";
+        return "admin";
     }
 }

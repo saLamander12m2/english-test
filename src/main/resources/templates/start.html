@@ -13,25 +13,25 @@
 <main>
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="test-tab" data-bs-toggle="tab" data-bs-target="#test-tab-pane"
+            <button class="nav-link active" id="start-tab" data-bs-toggle="tab" data-bs-target="#start"
                     type="button"
-                    role="tab" aria-controls="test-tab-pane" aria-selected="false">New Test
+                    role="tab" aria-controls="start" aria-selected="false">New Test
             </button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history-tab-pane"
-                    type="button" role="tab" aria-controls="history-tab-pane" aria-selected="false">History
+            <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history"
+                    type="button" role="tab" aria-controls="history" aria-selected="false">History
             </button>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane show active fade justify-content-center" id="test-tab-pane" role="tabpanel"
-             aria-labelledby="test-tab"
+        <div class="tab-pane show active fade justify-content-center" id="start" role="tabpanel"
+             aria-labelledby="start-tab"
              tabindex="0">
             <div class="row mt-3 justify-content-center">
                 <div class="col-3">
                     <form method="post" action="/test/create">
-                        <select class="form-select" required>
+                        <select class="form-select" required th:name="verb">
                             <option value="">Please choose the verb</option>
                             <option
                                     th:each="topicVerb : ${topicVerbs}"
@@ -45,7 +45,7 @@
                     </form>
                 </div>
             </div>
-            <div class="tab-pane fade" id="history-tab-pane" role="tabpanel" aria-labelledby="history-tab" tabindex="0">
+            <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab" tabindex="0">
                 world
             </div>
         </div>
@@ -56,5 +56,6 @@
 <script src="/js/bootstrap.js"></script>
 <script src="/js/color-modes.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/start.page.tab.js"></script>
 </body>
 </html>
