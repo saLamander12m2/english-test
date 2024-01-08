@@ -48,36 +48,40 @@ public class AdminController {
             int i = 0;
 
             while ((line = reader.readLine()) != null) {
-                String[] stringArray = line.split(",");
 
-                System.out.println(Arrays.toString(stringArray));
-                i++;
+                String[] stringArray = line.split(";");
 
-                TopicVerb topicVerb;
-                topicVerb = topicVerbService.getTopicVerbByVerb(stringArray[1].toLowerCase());
-                if (topicVerb == null) {
-                    topicVerb = new TopicVerb(stringArray[1].toLowerCase());
-                    topicVerbService.save(topicVerb);
-                }
+                if (stringArray.length == 7){
+                    System.out.println(Arrays.toString(stringArray));
+                    i++;
 
-                TestQuestion testQuestion = new TestQuestion(stringArray[2]);
-                testQuestion.setTopicVerb(topicVerb);
-                testQuestionService.save(testQuestion);
 
-                try {
-                    Answer answer = new Answer(stringArray[3].toLowerCase(), testQuestion);
-
-                    List<WrongAnswer> wrongAnswers = new ArrayList<>();
-                    for (int y = 4; y < 7; y++) {
-                        wrongAnswers.add(new WrongAnswer(stringArray[y].toLowerCase(), testQuestion));
+                    TopicVerb topicVerb;
+                    topicVerb = topicVerbService.getTopicVerbByVerb(stringArray[1].toLowerCase());
+                    if (topicVerb == null) {
+                        topicVerb = new TopicVerb(stringArray[1].toLowerCase());
+                        topicVerbService.save(topicVerb);
                     }
 
-                    answerService.save(answer);
-                    wrongAnswers.forEach(wrongAnswerService::save);
+                    TestQuestion testQuestion = new TestQuestion(stringArray[2]);
+                    testQuestion.setTopicVerb(topicVerb);
+                    testQuestionService.save(testQuestion);
 
-                    log.info("Successfully save testQuestion -> {}", testQuestion.toString());
-                } catch (DataIntegrityViolationException e) {
-                    log.info("TestQuestion already exists -> {}", testQuestion.toString());
+                    try {
+                        Answer answer = new Answer(stringArray[3].toLowerCase(), testQuestion);
+
+                        List<WrongAnswer> wrongAnswers = new ArrayList<>();
+                        for (int y = 4; y < 7; y++) {
+                            wrongAnswers.add(new WrongAnswer(stringArray[y].toLowerCase(), testQuestion));
+                        }
+
+                        answerService.save(answer);
+                        wrongAnswers.forEach(wrongAnswerService::save);
+
+                        log.info("Successfully save testQuestion -> {}", testQuestion.toString());
+                    } catch (DataIntegrityViolationException e) {
+                        log.info("TestQuestion already exists -> {}", testQuestion.toString());
+                    }
                 }
             }
             log.info("Всего в файле {} строк", i);
