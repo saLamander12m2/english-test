@@ -21,12 +21,12 @@ public class ConvertService {
                 .build();
     }
 
-    public static CurrentTestQuestionsDto doFromCurrentTestDtoToCurrentTestQuestionsDto(CurrentTestDto currentTestDto){
+    public static CurrentTestQuestionsDto doFromCurrentTestDtoToCurrentTestQuestionsDto(CurrentTestDto currentTestDto) {
         TestQuestion testQuestion = currentTestDto.getTestQuestions().get(currentTestDto.getCurrentTestQuestion());
         List<String> answers = new ArrayList<>();
         answers.add(testQuestion.getAnswer().getText());
 
-        for (WrongAnswer item: testQuestion.getWrongAnswers()) {
+        for (WrongAnswer item : testQuestion.getWrongAnswers()) {
             answers.add(item.getText());
         }
         Collections.shuffle(answers);
@@ -39,10 +39,18 @@ public class ConvertService {
                 .build();
     }
 
-    public static EndTestDto doFromCurrentTestDtoToEndTestDto(CurrentTestDto currentTestDto){
+    public static EndTestDto doFromCurrentTestDtoToEndTestDto(CurrentTestDto currentTestDto) {
+
+        List<String> rightAnswers = new ArrayList<>();
+        currentTestDto.getTestQuestions().forEach(question -> rightAnswers.add(question.getAnswer().getText()));
+        List<String> testQuestionSentences = new ArrayList<>();
+        currentTestDto.getTestQuestions().forEach(item -> testQuestionSentences.add(item.getSentence()));
         return EndTestDto.builder()
-                .RightAnswerQuantity(currentTestDto.getRightAnswersQuantity())
+                .rightAnswerQuantity(currentTestDto.getRightAnswersQuantity())
                 .totalTestQuestionQuantity(currentTestDto.getTestQuestions().size())
+                .usersAnswers(currentTestDto.getUsersAnswers())
+                .rightAnswers(rightAnswers)
+                .testQuestionSentences(testQuestionSentences)
                 .build();
     }
 }

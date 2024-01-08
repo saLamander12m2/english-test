@@ -11,7 +11,6 @@ import ru.school_activity.english_test.dto.CurrentAnswerDto;
 import ru.school_activity.english_test.dto.CurrentTestDto;
 import ru.school_activity.english_test.dto.CurrentTestQuestionsDto;
 import ru.school_activity.english_test.dto.EndTestDto;
-import ru.school_activity.english_test.entity.Test;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
 import ru.school_activity.english_test.security.AppUserDetails;
@@ -44,6 +43,13 @@ public class TestController {
 
         httpSession.setAttribute("currentTestDto", currentTestDto);
 
+//        EndTestDto endTestDto = new EndTestDto();
+//        endTestDto.setTotalTestQuestionQuantity(testQuestions.size());
+//        List<String> rightAnswers = new ArrayList<>();
+//        testQuestions.forEach(question -> rightAnswers.add(question.getAnswer().getText()));
+//        endTestDto.setRightAnswers(rightAnswers);
+//        httpSession.setAttribute("endTestDto", endTestDto);
+
         return "redirect:/test";
     }
 
@@ -62,21 +68,23 @@ public class TestController {
     public String answerTest(@ModelAttribute("currentAnswerDto") CurrentAnswerDto currentAnswerDto, HttpSession httpSession, Model model) {
         CurrentTestDto currentTestDto = (CurrentTestDto) httpSession.getAttribute("currentTestDto");
 
-//        if (currentTestDto.isAnswerRight(currentAnswerDto.getAnswer())) {
-//            currentTestDto.setRightAnswersQuantity(currentTestDto.getRightAnswersQuantity() + 1);
-//        }
-
+        currentTestDto.getUsersAnswers().add(currentAnswerDto.getAnswer());
         currentTestService.giveAnswer(currentTestDto, currentAnswerDto.getAnswer());
-        if (currentTestDto.isEnd()){
+        if (currentTestDto.isEnd()) {
             return "redirect:/test/end";
         }
         httpSession.setAttribute("currentTestDto", currentTestDto);
+
+//        EndTestDto endTestDto = (EndTestDto) httpSession.getAttribute("endTestDto");
+//        endTestDto.getUsersAnswers().add(currentAnswerDto.getAnswer());
+//
+//        httpSession.setAttribute("endTestDto", endTestDto);
 
         return "redirect:/test";
     }
 
     @GetMapping(value = "/end")
-    public String endTest(HttpSession httpSession, Model model){
+    public String endTest(HttpSession httpSession, Model model) {
         CurrentTestDto currentTestDto = (CurrentTestDto) httpSession.getAttribute("currentTestDto");
         EndTestDto endTestDto = ConvertService.doFromCurrentTestDtoToEndTestDto(currentTestDto);
 
