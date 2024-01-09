@@ -3,8 +3,7 @@ package ru.school_activity.english_test.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import ru.school_activity.english_test.dto.CurrentTestDto;
-import ru.school_activity.english_test.entity.Answer;
+import ru.school_activity.english_test.dto.CurrentTest;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
 import ru.school_activity.english_test.repository.TestQuestionRepository;
@@ -25,11 +24,11 @@ public class CurrentTestService {
     @Value("${app.testQuestionsQuantity}")
     private int testQuestionsQuantity;
 
-    public CurrentTestDto createCurrentTest(TopicVerb topicVerb) {
-        CurrentTestDto currentTestDto = new CurrentTestDto(topicVerb);
-        currentTestDto.setTestQuestions(fillTestQuestionList(topicVerb));
+    public CurrentTest createCurrentTest(TopicVerb topicVerb) {
+        CurrentTest currentTest = new CurrentTest(topicVerb);
+        currentTest.setTestQuestions(fillTestQuestionList(topicVerb));
 
-        return currentTestDto;
+        return currentTest;
     }
 
     public List<TestQuestion> fillTestQuestionList(TopicVerb topicVerb) {
@@ -42,19 +41,19 @@ public class CurrentTestService {
         return currentQuestions;
     }
 
-    public void giveAnswer(CurrentTestDto currentTestDto, String answer) {
-        if (currentTestDto.isAnswerRight(answer)) {
-            currentTestDto.incrementRightAnswerCounter();
+    public void giveAnswer(CurrentTest currentTest, String answer) {
+        if (currentTest.isAnswerRight(answer)) {
+            currentTest.incrementRightAnswerCounter();
         }
-        currentTestDto.setStateEndIfNecessary();
-        if (currentTestDto.isEnd()) {
-            testRepository.save(ConvertService.doFromCurrentTestDtoToTest(currentTestDto));
+        currentTest.setStateEndIfNecessary();
+        if (currentTest.isEnd()) {
+            testRepository.save(ConvertService.doFromCurrentTestDtoToTest(currentTest));
         } else {
-            goNextQuestion(currentTestDto);
+            goNextQuestion(currentTest);
         }
     }
 
-    private void goNextQuestion(CurrentTestDto currentTestDto) {
-        currentTestDto.setCurrentTestQuestion(currentTestDto.getCurrentTestQuestion() + 1);
+    private void goNextQuestion(CurrentTest currentTest) {
+        currentTest.setCurrentTestQuestion(currentTest.getCurrentTestQuestion() + 1);
     }
 }

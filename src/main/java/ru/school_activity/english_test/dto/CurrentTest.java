@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CurrentTestDto {
+public class CurrentTest {
 
     private List<TestQuestion> testQuestions;
     private int rightAnswersQuantity;
@@ -23,7 +23,7 @@ public class CurrentTestDto {
     private StateCurrentTest state;
     private AppUser appUser;
 
-    public CurrentTestDto(TopicVerb topicVerb) {
+    public CurrentTest(TopicVerb topicVerb) {
         this.rightAnswersQuantity = 0;
         this.currentTestQuestion = 0;
         this.topicVerb = topicVerb;

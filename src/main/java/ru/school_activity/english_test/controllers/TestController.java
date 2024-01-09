@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.school_activity.english_test.dto.CurrentAnswerDto;
-import ru.school_activity.english_test.dto.CurrentTestDto;
+import ru.school_activity.english_test.dto.CurrentTest;
 import ru.school_activity.english_test.dto.CurrentTestQuestionsDto;
 import ru.school_activity.english_test.dto.EndTestDto;
 import ru.school_activity.english_test.entity.TestQuestion;
@@ -31,32 +31,27 @@ public class TestController {
 
 
     @PostMapping(value = "/create")
-    public String startTest(@RequestParam("verb") String verb, Model model, @AuthenticationPrincipal AppUserDetails appUserDetails, HttpSession httpSession) {
+    public String startTest(@RequestParam("verb") String verb, Model model,
+                            @AuthenticationPrincipal AppUserDetails appUserDetails,
+                            HttpSession httpSession) {
 
         TopicVerb topicVerb = topicVerbService.getTopicVerbByVerb(verb.toLowerCase());
 
         List<TestQuestion> testQuestions = currentTestService.fillTestQuestionList(topicVerb);
 
-        CurrentTestDto currentTestDto = new CurrentTestDto(topicVerb);
-        currentTestDto.setAppUser(appUserDetails.getAppUser());
-        currentTestDto.setTestQuestions(testQuestions);
+        CurrentTest currentTest = new CurrentTest(topicVerb);
+        currentTest.setAppUser(appUserDetails.getAppUser());
+        currentTest.setTestQuestions(testQuestions);
 
-        httpSession.setAttribute("currentTestDto", currentTestDto);
-
-//        EndTestDto endTestDto = new EndTestDto();
-//        endTestDto.setTotalTestQuestionQuantity(testQuestions.size());
-//        List<String> rightAnswers = new ArrayList<>();
-//        testQuestions.forEach(question -> rightAnswers.add(question.getAnswer().getText()));
-//        endTestDto.setRightAnswers(rightAnswers);
-//        httpSession.setAttribute("endTestDto", endTestDto);
+        httpSession.setAttribute("currentTestDto", currentTest);
 
         return "redirect:/test";
     }
 
     @GetMapping
     public String currentTest(HttpSession httpSession, Model model) {
-        CurrentTestDto currentTestDto = (CurrentTestDto) httpSession.getAttribute("currentTestDto");
-        CurrentTestQuestionsDto currentTestQuestionsDto = ConvertService.doFromCurrentTestDtoToCurrentTestQuestionsDto(currentTestDto);
+        CurrentTest currentTest = (CurrentTest) httpSession.getAttribute("currentTestDto");
+        CurrentTestQuestionsDto currentTestQuestionsDto = ConvertService.doFromCurrentTestDtoToCurrentTestQuestionsDto(currentTest);
 
         model.addAttribute("currentTestQuestionsDto", currentTestQuestionsDto);
         model.addAttribute("currentAnswerDto", new CurrentAnswerDto());
@@ -65,15 +60,16 @@ public class TestController {
     }
 
     @PostMapping(value = "/answer")
-    public String answerTest(@ModelAttribute("currentAnswerDto") CurrentAnswerDto currentAnswerDto, HttpSession httpSession, Model model) {
-        CurrentTestDto currentTestDto = (CurrentTestDto) httpSession.getAttribute("currentTestDto");
+    public String answerTest(@ModelAttribute("currentAnswerDto") CurrentAnswerDto currentAnswerDto,
+                             HttpSession httpSession, Model model) {
+        CurrentTest currentTest = (CurrentTest) httpSession.getAttribute("currentTestDto");
 
-        currentTestDto.getUsersAnswers().add(currentAnswerDto.getAnswer());
-        currentTestService.giveAnswer(currentTestDto, currentAnswerDto.getAnswer());
-        if (currentTestDto.isEnd()) {
+        currentTest.getUsersAnswers().add(currentAnswerDto.getAnswer());
+        currentTestService.giveAnswer(currentTest, currentAnswerDto.getAnswer());
+        if (currentTest.isEnd()) {
             return "redirect:/test/end";
         }
-        httpSession.setAttribute("currentTestDto", currentTestDto);
+        httpSession.setAttribute("currentTestDto", currentTest);
 
 //        EndTestDto endTestDto = (EndTestDto) httpSession.getAttribute("endTestDto");
 //        endTestDto.getUsersAnswers().add(currentAnswerDto.getAnswer());
@@ -85,8 +81,8 @@ public class TestController {
 
     @GetMapping(value = "/end")
     public String endTest(HttpSession httpSession, Model model) {
-        CurrentTestDto currentTestDto = (CurrentTestDto) httpSession.getAttribute("currentTestDto");
-        EndTestDto endTestDto = ConvertService.doFromCurrentTestDtoToEndTestDto(currentTestDto);
+        CurrentTest currentTest = (CurrentTest) httpSession.getAttribute("currentTestDto");
+        EndTestDto endTestDto = ConvertService.doFromCurrentTestDtoToEndTestDto(currentTest);
 
         model.addAttribute("endTestDto", endTestDto);
 

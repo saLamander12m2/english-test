@@ -33,4 +33,17 @@ public class Test {
     @ManyToOne
     @JoinColumn(name = "topic_verb_id")
     private TopicVerb topicVerb;
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", questionTotal=" + questionTotal +
+                ", rightAnswers=" + rightAnswers +
+                ", appUser=" + appUser +
+                ", topicVerb=" + topicVerb +
+                '}';
+    }
 }

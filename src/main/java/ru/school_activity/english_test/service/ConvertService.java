@@ -1,28 +1,31 @@
 package ru.school_activity.english_test.service;
 
-import ru.school_activity.english_test.dto.CurrentTestDto;
+import ru.school_activity.english_test.dto.CurrentTest;
 import ru.school_activity.english_test.dto.CurrentTestQuestionsDto;
 import ru.school_activity.english_test.dto.EndTestDto;
+import ru.school_activity.english_test.dto.HistoryDto;
 import ru.school_activity.english_test.entity.Test;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.WrongAnswer;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class ConvertService {
-    public static Test doFromCurrentTestDtoToTest(CurrentTestDto currentTestDto) {
+    public static Test doFromCurrentTestDtoToTest(CurrentTest currentTest) {
         return Test.builder()
-                .questionTotal(currentTestDto.getTestQuestions().size())
-                .rightAnswers(currentTestDto.getRightAnswersQuantity())
-                .appUser(currentTestDto.getAppUser())
-                .topicVerb(currentTestDto.getTopicVerb())
+                .questionTotal(currentTest.getTestQuestions().size())
+                .rightAnswers(currentTest.getRightAnswersQuantity())
+                .appUser(currentTest.getAppUser())
+                .topicVerb(currentTest.getTopicVerb())
                 .build();
     }
 
-    public static CurrentTestQuestionsDto doFromCurrentTestDtoToCurrentTestQuestionsDto(CurrentTestDto currentTestDto) {
-        TestQuestion testQuestion = currentTestDto.getTestQuestions().get(currentTestDto.getCurrentTestQuestion());
+    public static CurrentTestQuestionsDto doFromCurrentTestDtoToCurrentTestQuestionsDto(CurrentTest currentTest) {
+        TestQuestion testQuestion = currentTest.getTestQuestions().get(currentTest.getCurrentTestQuestion());
         List<String> answers = new ArrayList<>();
         answers.add(testQuestion.getAnswer().getText());
 
@@ -32,25 +35,39 @@ public class ConvertService {
         Collections.shuffle(answers);
 
         return CurrentTestQuestionsDto.builder()
-                .currentTestQuestion(currentTestDto.getCurrentTestQuestion())
+                .currentTestQuestion(currentTest.getCurrentTestQuestion())
                 .testQuestion(testQuestion.getSentence())
-                .testQuestionTotal(currentTestDto.getTestQuestions().size())
+                .testQuestionTotal(currentTest.getTestQuestions().size())
                 .answers(answers)
                 .build();
     }
 
-    public static EndTestDto doFromCurrentTestDtoToEndTestDto(CurrentTestDto currentTestDto) {
+    public static EndTestDto doFromCurrentTestDtoToEndTestDto(CurrentTest currentTest) {
 
         List<String> rightAnswers = new ArrayList<>();
-        currentTestDto.getTestQuestions().forEach(question -> rightAnswers.add(question.getAnswer().getText()));
+        currentTest.getTestQuestions().forEach(question -> rightAnswers.add(question.getAnswer().getText()));
         List<String> testQuestionSentences = new ArrayList<>();
-        currentTestDto.getTestQuestions().forEach(item -> testQuestionSentences.add(item.getSentence()));
+        currentTest.getTestQuestions().forEach(item -> testQuestionSentences.add(item.getSentence()));
         return EndTestDto.builder()
-                .rightAnswerQuantity(currentTestDto.getRightAnswersQuantity())
-                .totalTestQuestionQuantity(currentTestDto.getTestQuestions().size())
-                .usersAnswers(currentTestDto.getUsersAnswers())
+                .rightAnswerQuantity(currentTest.getRightAnswersQuantity())
+                .totalTestQuestionQuantity(currentTest.getTestQuestions().size())
+                .usersAnswers(currentTest.getUsersAnswers())
                 .rightAnswers(rightAnswers)
                 .testQuestionSentences(testQuestionSentences)
+                .build();
+    }
+
+    public static HistoryDto doFromTestToHistoryDto(Test test){
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        Date date = new Date(test.getDate());
+        String dateString = simpleDateFormat.format(date);
+
+        return HistoryDto.builder()
+                .rightAnswersQuantity(test.getRightAnswers())
+                .questionTotal(test.getQuestionTotal())
+                .topicVerb(test.getTopicVerb().getVerb())
+                .date(dateString)
                 .build();
     }
 }
