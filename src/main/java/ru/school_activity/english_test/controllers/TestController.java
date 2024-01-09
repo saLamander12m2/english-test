@@ -3,7 +3,10 @@ package ru.school_activity.english_test.controllers;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,6 +53,11 @@ public class TestController {
 
     @GetMapping
     public String currentTest(HttpSession httpSession, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAuthenticated = !(authentication instanceof AnonymousAuthenticationToken);
+        model.addAttribute("isAuthenticated", isAuthenticated);
+        model.addAttribute("name", httpSession.getAttribute("name"));
+
         CurrentTest currentTest = (CurrentTest) httpSession.getAttribute("currentTestDto");
         CurrentTestQuestionsDto currentTestQuestionsDto = ConvertService.doFromCurrentTestDtoToCurrentTestQuestionsDto(currentTest);
 
@@ -71,20 +79,20 @@ public class TestController {
         }
         httpSession.setAttribute("currentTestDto", currentTest);
 
-//        EndTestDto endTestDto = (EndTestDto) httpSession.getAttribute("endTestDto");
-//        endTestDto.getUsersAnswers().add(currentAnswerDto.getAnswer());
-//
-//        httpSession.setAttribute("endTestDto", endTestDto);
-
         return "redirect:/test";
     }
 
     @GetMapping(value = "/end")
     public String endTest(HttpSession httpSession, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAuthenticated = !(authentication instanceof AnonymousAuthenticationToken);
+        model.addAttribute("isAuthenticated", isAuthenticated);
+
         CurrentTest currentTest = (CurrentTest) httpSession.getAttribute("currentTestDto");
         EndTestDto endTestDto = ConvertService.doFromCurrentTestDtoToEndTestDto(currentTest);
 
         model.addAttribute("endTestDto", endTestDto);
+        model.addAttribute("name", httpSession.getAttribute("name"));
 
         return "end";
     }

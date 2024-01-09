@@ -8,7 +8,7 @@
 </head>
 <body class="d-flex vh-100 flex-column container-xxl">
 <header>
-    <div th:insert="~{fragment/header.html :: header}"></div>
+    <div th:insert="~{fragment/header.html :: header (isAuthenticated=${isAuthenticated}, name=${name})}"></div>
 </header>
 <main>
     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">

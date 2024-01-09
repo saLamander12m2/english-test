@@ -8,7 +8,7 @@
 </head>
 <body class="d-flex vh-100 flex-column container-xxl">
 <header>
-    <div th:insert="~{fragment/header.html :: header}"></div>
+    <div th:insert="~{fragment/header.html :: header (isAuthenticated=${isAuthenticated}, name=${name})}"></div>
 </header>
 <main>
     <div class="row justify-content-center">
@@ -16,16 +16,16 @@
             <h1>The test is over</h1>
         </div>
     </div>
-    <!--    <div class="row justify-content-center mt-5">-->
-    <!--        <div class="col-6 justify-content-center">-->
-    <!--            <div class="text-center">-->
-    <!--                Всего вопросов: <span th:text="${endTestDto.totalTestQuestionQuantity}"></span>-->
-    <!--            </div>-->
-    <!--            <div class="text-center">-->
-    <!--                Правильных ответов: <span th:text="${endTestDto.rightAnswerQuantity}"></span>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+    <div class="row justify-content-center mt-5">
+        <div class="col-6 justify-content-center">
+            <div class="text-center">
+                Total questions: <span th:text="${endTestDto.totalTestQuestionQuantity}"></span>
+            </div>
+            <div class="text-center">
+                Right answers: <span th:text="${endTestDto.rightAnswerQuantity}"></span>
+            </div>
+        </div>
+    </div>
     <div class="row justify-content-center mt-4">
         <div class="col-8">
             <table class="table">

@@ -1,8 +1,13 @@
 package ru.school_activity.english_test.controllers;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +17,7 @@ import ru.school_activity.english_test.entity.Test;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
 import ru.school_activity.english_test.repository.TestRepository;
+import ru.school_activity.english_test.security.AppUserDetails;
 import ru.school_activity.english_test.service.ConvertService;
 import ru.school_activity.english_test.service.TestService;
 import ru.school_activity.english_test.service.TopicVerbService;
@@ -29,8 +35,14 @@ public class StartController {
     private final TestRepository testRepository;
 
     @GetMapping()
-    public String getHome(Model model) {
-        log.info("Hello controller");
+    public String getHome(Model model, @AuthenticationPrincipal AppUserDetails appUserDetails, HttpSession httpSession) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAuthenticated = !(authentication instanceof AnonymousAuthenticationToken);
+        String name = appUserDetails.getAppUser().getUsername();
+        model.addAttribute("isAuthenticated", isAuthenticated);
+        model.addAttribute("name", name);
+        httpSession.setAttribute("name", name);
+
         List<TopicVerb> topicVerbs = topicVerbService.getAll();
         log.info(topicVerbs.toString());
         model.addAttribute("topicVerbs", topicVerbs);

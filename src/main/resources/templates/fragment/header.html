@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <script src="/js/color-modes.js"></script>
@@ -91,35 +92,25 @@
         }
     </style>
 
-
-    <!-- Custom styles for this template -->
     <link href="/css/headers.css" rel="stylesheet">
 </head>
-<body th:fragment="header">
-
+<body>
 <div class="container">
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-        <div class="col-2 mb-2 mb-md-0 fl">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom h-80"
+            th:fragment="header (isAuthenticated, name)">
+        <div class="col-2 mb-2 mb-md-0 fl" >
             <img src="/images/logo-png.png" alt="logo" class="img-fluid">
         </div>
-
-        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/start" class="nav-link px-2 link-secondary">Home</a></li>
-            <li><a href="#" class="nav-link px-2">Features</a></li>
-            <li><a href="#" class="nav-link px-2">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2">About</a></li>
-        </ul>
-<!--        <div class="col-md-3 text-end">-->
-                <ul class="nav col-3 col-md-auto mb-2 justify-content-center mb-md-0 align-self-center">
-                    <li class="ms-2 mb-6"><a href="/sign-in" class="btn btn-primary">Login</a></li>
-                    <li class="ms-2 mb-6"><a href="/sign-up" class="btn btn-primary">Sign up</a></li>
-                    <li class="ms-2 mb-6"> <a href="/logout" class="btn btn-primary">Logout</a></li>
-                </ul>
-<!--        </div>-->
+        <div class="col-md-3 text-end" th:if="${isAuthenticated}">
+            <a href="/logout" class="btn btn-primary">Logout</a>
+            <a class="btn btn-outline">Hi, <span th:text="${name}"></span></a>
+        </div>
+        <div class="col-md-3 text-end" th:unless="${isAuthenticated}">
+            <a href="/sign-in" class="btn btn-primary">Login</a>
+            <a href="/sign-up" class="btn btn-primary">Sign up</a>
+        </div>
     </header>
 </div>
 <script src="/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
