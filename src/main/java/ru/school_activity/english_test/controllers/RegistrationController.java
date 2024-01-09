@@ -44,7 +44,7 @@ public class RegistrationController {
     @PostMapping
     public String signUpForm(@ModelAttribute("signUpDto") SignUpDto signUpDto, BindingResult bindingResult, Model model) {
 
-//        signUpDto.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
+        signUpDto.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
 
         try {
             appUserService.save(signUpDto);
