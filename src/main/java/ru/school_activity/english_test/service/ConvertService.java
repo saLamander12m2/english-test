@@ -1,20 +1,23 @@
 package ru.school_activity.english_test.service;
 
-import ru.school_activity.english_test.dto.CurrentTest;
-import ru.school_activity.english_test.dto.CurrentTestQuestionsDto;
-import ru.school_activity.english_test.dto.EndTestDto;
-import ru.school_activity.english_test.dto.HistoryDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import ru.school_activity.english_test.dto.*;
+import ru.school_activity.english_test.entity.AppUser;
 import ru.school_activity.english_test.entity.Test;
 import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.WrongAnswer;
+import ru.school_activity.english_test.repository.RoleRepository;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
+@RequiredArgsConstructor
+@Service
 public class ConvertService {
+
+    private final RoleRepository roleRepository;
+
     public static Test doFromCurrentTestDtoToTest(CurrentTest currentTest) {
         return Test.builder()
                 .questionTotal(currentTest.getTestQuestions().size())
@@ -68,6 +71,15 @@ public class ConvertService {
                 .questionTotal(test.getQuestionTotal())
                 .topicVerb(test.getTopicVerb().getVerb())
                 .date(dateString)
+                .build();
+    }
+
+    public AppUser makeAppUserFromSignUpDto(SignUpDto signUpDto) {
+        return AppUser.builder()
+                .username(signUpDto.getUsername())
+                .password(signUpDto.getPassword())
+                .email(signUpDto.getEmail())
+                .roles(Set.of(roleRepository.findByName("USER").get()))
                 .build();
     }
 }

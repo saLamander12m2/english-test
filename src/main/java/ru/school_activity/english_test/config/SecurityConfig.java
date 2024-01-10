@@ -15,7 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import ru.school_activity.english_test.entity.Role;
+import ru.school_activity.english_test.repository.RoleRepository;
 import ru.school_activity.english_test.service.AppUserDetailsService;
+
+import static org.springframework.http.HttpMethod.GET;
+
 
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -32,6 +37,7 @@ public class SecurityConfig {
                         authorize
                                 .requestMatchers("/sign-in", "/sign-up").permitAll()
                                 .requestMatchers("css/**", "images/**", "js/**").permitAll()
+                                .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

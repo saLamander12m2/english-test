@@ -7,7 +7,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +25,6 @@ import ru.school_activity.english_test.service.AppUserService;
 public class RegistrationController {
 
     private final AppUserService appUserService;
-    private final PasswordEncoder passwordEncoder;
 
     @GetMapping()
     public String signUp(Model model) {
@@ -43,8 +41,6 @@ public class RegistrationController {
 
     @PostMapping
     public String signUpForm(@ModelAttribute("signUpDto") SignUpDto signUpDto, BindingResult bindingResult, Model model) {
-
-        signUpDto.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
 
         try {
             appUserService.save(signUpDto);

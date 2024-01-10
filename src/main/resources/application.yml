@@ -1,5 +1,7 @@
 app:
   testQuestionsQuantity: 10
+  adminpass: ${ADMIN_PASS}
+  adminemail: ${ADMIN_EMAIL}
 
 logging:
   level:
@@ -8,6 +10,7 @@ logging:
 spring:
   jpa:
     show-sql: true
+
 
 
 

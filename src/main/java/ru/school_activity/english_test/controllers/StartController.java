@@ -13,17 +13,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.school_activity.english_test.dto.HistoryDto;
+import ru.school_activity.english_test.entity.Role;
 import ru.school_activity.english_test.entity.Test;
-import ru.school_activity.english_test.entity.TestQuestion;
 import ru.school_activity.english_test.entity.TopicVerb;
 import ru.school_activity.english_test.repository.TestRepository;
 import ru.school_activity.english_test.security.AppUserDetails;
 import ru.school_activity.english_test.service.ConvertService;
-import ru.school_activity.english_test.service.TestService;
 import ru.school_activity.english_test.service.TopicVerbService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,8 +40,17 @@ public class StartController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isAuthenticated = !(authentication instanceof AnonymousAuthenticationToken);
         String name = appUserDetails.getAppUser().getUsername();
+
+        AtomicBoolean isAdmin = new AtomicBoolean(false);
+        Set<Role> roles = appUserDetails.getAppUser().getRoles();
+        roles.forEach(role -> {
+            isAdmin.set(role.getName().equals("ADMIN"));
+        });
+
         model.addAttribute("isAuthenticated", isAuthenticated);
         model.addAttribute("name", name);
+        model.addAttribute("isAdmin", isAdmin);
+
         httpSession.setAttribute("name", name);
 
         List<TopicVerb> topicVerbs = topicVerbService.getAll();

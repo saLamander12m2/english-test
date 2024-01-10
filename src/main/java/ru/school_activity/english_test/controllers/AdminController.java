@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,6 +41,7 @@ public class AdminController {
     private final AnswerService answerService;
     private final WrongAnswerService wrongAnswerService;
 
+    @Secured("ROLE_ADMIN")
     @GetMapping()
     public String getAdminPage(Model model, HttpSession httpSession) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -49,6 +52,7 @@ public class AdminController {
         return "admin";
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping(value = "/upload")
     public String upload(@RequestParam("file") MultipartFile multipartFile) {
 

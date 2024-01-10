@@ -3,7 +3,8 @@ package ru.school_activity.english_test.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Set;
 
 
 @Entity
@@ -25,8 +26,12 @@ public class AppUser {
     @Column(name = "password")
     private String password;
 
-//    @OneToMany(mappedBy = "appUser")
-//    private List<Test> tests;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id", referencedColumnName = "id")
+    )
+    private Set<Role> roles;
 
     @Override
     public String toString() {
@@ -34,7 +39,7 @@ public class AppUser {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-//                ", tests=" + tests +
+                ", roles=" + roles +
                 '}';
     }
 }

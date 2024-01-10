@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>English Test</title>
@@ -21,6 +21,11 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history"
                     type="button" role="tab" aria-controls="history" aria-selected="false">History
+            </button>
+        </li>
+        <li class="nav-item" role="presentation" th:if="${isAdmin.toString().equals('true')}">
+            <button class="nav-link" data-bs-toggle="tab">
+                <span><a href="/admin">Admin</a></span>
             </button>
         </li>
     </ul>
@@ -48,26 +53,27 @@
         </div>
         <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab" tabindex="0">
             <div class="row justify-content-center mt-3">
-                <div class="col-8"><table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Topic</th>
-                        <th scope="col">Question Total</th>
-                        <th scope="col">Right Answers</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="item, itemStat : ${historyDtoList}">
-                        <th scope="row" th:text="${itemStat.index}"></th>
-                        <td th:text="${item.date}"></td>
-                        <td th:text="${item.topicVerb}"></td>
-                        <td th:text="${item.questionTotal}"></td>
-                        <td th:text="${item.rightAnswersQuantity}"></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="col-8">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Topic</th>
+                            <th scope="col">Question Total</th>
+                            <th scope="col">Right Answers</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item, itemStat : ${historyDtoList}">
+                            <th scope="row" th:text="${itemStat.index}"></th>
+                            <td th:text="${item.date}"></td>
+                            <td th:text="${item.topicVerb}"></td>
+                            <td th:text="${item.questionTotal}"></td>
+                            <td th:text="${item.rightAnswersQuantity}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
