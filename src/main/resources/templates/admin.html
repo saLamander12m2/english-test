@@ -18,9 +18,13 @@
                 <input type="file" class="mt-1" id="file" name="file" accept="text/csv" />
                 <button type="submit" class="btn mt-3 btn-outline-primary">Upload</button>
             </div>
-
         </div>
     </form>
+    <div class="row justify-content-center mt-3">
+        <div class="col-7 text-start">
+            <p th:utext="${result}"></p>
+        </div>
+    </div>
 </main>
 <footer th:insert="~{fragment/footer.html :: footer}" class="mt-auto"></footer>
 <script src="/js/bootstrap.js"></script>
