@@ -31,24 +31,8 @@ public class RoleService {
     private String adminEmail;
 
     @PostConstruct
-    public void addRoles() {
-        log.info("Try to save Role");
-        Role roleUser = new Role("USER");
-        try {
-            roleRepository.save(roleUser);
-            log.info("Successfully save role USER");
-        } catch (DataIntegrityViolationException exception) {
-            log.info("Role USER already exist in db");
-        }
-
-        Role roleAdmin = new Role("ADMIN");
-        try {
-            roleRepository.save(roleAdmin);
-            log.info("Successfully save role ADMIN");
-        } catch (DataIntegrityViolationException e) {
-            log.info("Role ADMIN already exist in db");
-        }
-
+    public void createAdmin() {
+        log.info("Create ADMIN in PostConstruct");
         AppUser admin = AppUser.builder()
                 .username("admin")
                 .password(passwordEncoder.encode(adminPass))
@@ -61,6 +45,5 @@ public class RoleService {
         } catch (DataIntegrityViolationException e){
             log.info("User ADMIN already exist");
         }
-
     }
 }

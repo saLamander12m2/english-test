@@ -3,10 +3,7 @@ package ru.school_activity.english_test.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.school_activity.english_test.dto.*;
-import ru.school_activity.english_test.entity.AppUser;
-import ru.school_activity.english_test.entity.Test;
-import ru.school_activity.english_test.entity.TestQuestion;
-import ru.school_activity.english_test.entity.WrongAnswer;
+import ru.school_activity.english_test.entity.*;
 import ru.school_activity.english_test.repository.RoleRepository;
 
 import java.text.SimpleDateFormat;
@@ -60,7 +57,7 @@ public class ConvertService {
                 .build();
     }
 
-    public static HistoryDto doFromTestToHistoryDto(Test test){
+    public static HistoryDto doFromTestToHistoryDto(Test test) {
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         Date date = new Date(test.getDate());
@@ -74,12 +71,17 @@ public class ConvertService {
                 .build();
     }
 
-    public AppUser makeAppUserFromSignUpDto(SignUpDto signUpDto) {
+    public AppUser doFromSignUpDtoToAppUser(SignUpDto signUpDto) {
+        Optional<Role> userOptional = roleRepository.findByName("USER");
+        Role user = null;
+        if (userOptional.isPresent()) {
+            user = userOptional.get();
+        }
         return AppUser.builder()
                 .username(signUpDto.getUsername())
                 .password(signUpDto.getPassword())
                 .email(signUpDto.getEmail())
-                .roles(Set.of(roleRepository.findByName("USER").get()))
+                .roles(Set.of(user))
                 .build();
     }
 }

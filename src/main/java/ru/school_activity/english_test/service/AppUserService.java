@@ -23,7 +23,7 @@ public class AppUserService {
     public void save(SignUpDto signUpDto) throws UserExistException {
         signUpDto.setPassword(passwordEncoder.encode(signUpDto.getPassword()));
         try {
-            appUserRepository.save(convertService.makeAppUserFromSignUpDto(signUpDto));
+            appUserRepository.save(convertService.doFromSignUpDtoToAppUser(signUpDto));
         } catch (DataIntegrityViolationException e) {
             throw new UserExistException("User with this email already exists!");
         }
