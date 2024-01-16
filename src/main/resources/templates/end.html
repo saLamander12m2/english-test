@@ -40,7 +40,7 @@
                 <tbody>
                 <tr th:each="item, itemStat : ${endTestDto.rightAnswers}"
                     th:classappend="${endTestDto.usersAnswers[itemStat.index].equals(endTestDto.rightAnswers[itemStat.index])} ? 'table-success' : 'table-danger'">
-                    <th scope="row" th:text="${itemStat.index}"></th>
+                    <th scope="row" th:text="${itemStat.index + 1}"></th>
                     <td th:text="${endTestDto.testQuestionSentences[itemStat.index]}"></td>
                     <td th:text="${endTestDto.usersAnswers[itemStat.index]}"></td>
                     <td th:text="${endTestDto.rightAnswers[itemStat.index]}"></td>
