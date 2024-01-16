@@ -66,7 +66,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="item, itemStat : ${historyDtoList}">
-                            <th scope="row" th:text="${itemStat.index}"></th>
+                            <th scope="row" th:text="${itemStat.index + 1}"></th>
                             <td th:text="${item.date}"></td>
                             <td th:text="${item.topicVerb}"></td>
                             <td th:text="${item.questionTotal}"></td>
