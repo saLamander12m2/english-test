@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" data-bs-theme="dark" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>English Test</title>
     <link rel="icon" href="/images/logo-png.png">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="d-flex vh-100 flex-column container-xxl">
+<body class="d-flex vh-100 flex-column container-xxl" data-bs-theme="dark">
 <header>
     <div th:insert="~{fragment/header.html :: header (isAuthenticated=${isAuthenticated}, name=${name})}"></div>
 </header>
