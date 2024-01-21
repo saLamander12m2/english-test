@@ -10,6 +10,7 @@ CREATE TABLE if not exists users_roles(
 );
 
 CREATE INDEX user_id_idx ON users_roles(user_id);
+CREATE INDEX roles_id_idx ON users_roles(role_id);
 
-ALTER TABLE users_roles ADD CONSTRAINT fk_users_roles_user_id FOREIGN KEY (user_id) REFERENCES users_roles(id);
-ALTER TABLE users_roles ADD CONSTRAINT fk_users_roles_roles_id FOREIGN KEY (role_id) REFERENCES users_roles(id);
+ALTER TABLE users_roles ADD CONSTRAINT fk_users_roles_user_id FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE users_roles ADD CONSTRAINT fk_users_roles_roles_id FOREIGN KEY (role_id) REFERENCES roles(id);
