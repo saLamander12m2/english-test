@@ -97,7 +97,7 @@
 
     <link href="/css/sign-in.css" rel="stylesheet">
 </head>
-<body class="d-flex vh-100 flex-column container-xxl">
+<body class="d-flex vh-100 flex-column container-xxl" data-bs-theme="dark">
 <header>
     <div th:insert="~{fragment/header.html :: header (isAuthenticated=${isAuthenticated}, name=${name})}"></div>
 </header>
@@ -107,11 +107,11 @@
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="Username" name="username" placeholder="name" required>
+                <input type="email" class="form-control" id="Username" name="username" placeholder="name" autocomplete="username" required>
                 <label for="username">Email</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" autocomplete="current-password"
                        required>
                 <label for="password">Password</label>
             </div>
