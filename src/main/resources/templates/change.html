@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>English Test</title>
+    <link rel="icon" href="/images/logo-png.png">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body  class="d-flex vh-100 flex-column container-xxl" data-bs-theme="dark">
+<header>
+    <div th:insert="~{fragment/header.html :: header (isAuthenticated=${isAuthenticated}, name=${name})}"></div>
+</header>
+<main>
+
+</main>
+
+
+<footer th:insert="~{fragment/footer.html :: footer}" class="mt-auto"></footer>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/color-modes.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

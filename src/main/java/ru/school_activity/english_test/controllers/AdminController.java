@@ -46,4 +46,15 @@ public class AdminController {
         httpSession.setAttribute("result", result);
         return "redirect:/admin";
     }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping(value = "/change")
+    public String getChangePage(Model model, HttpSession httpSession){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAuthenticated = !(authentication instanceof AnonymousAuthenticationToken);
+        model.addAttribute("isAuthenticated", isAuthenticated);
+        model.addAttribute("name", httpSession.getAttribute("name"));
+
+        return "change";
+    }
 }
