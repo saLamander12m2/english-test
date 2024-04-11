@@ -8,7 +8,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.school_activity.english_test.entity.AppUser;
-import ru.school_activity.english_test.entity.Role;
 import ru.school_activity.english_test.repository.AppUserRepository;
 import ru.school_activity.english_test.repository.RoleRepository;
 

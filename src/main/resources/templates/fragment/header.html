@@ -102,8 +102,8 @@
             <img src="/images/logo-png.png" alt="logo" class="img-fluid">
         </div>
         <div class="col-md-3 text-end" th:if="${isAuthenticated}">
-            <a href="/logout" class="btn btn-primary">Logout</a>
-            <a class="btn btn-outline">Hi, <span th:text="${name}"></span></a>
+            <a href="/logout" class="btn btn-primary" style="display: inline">Logout</a>
+            <a class="btn btn-outline" style="display: inline">Hi, <span th:text="${name}"></span></a>
         </div>
         <div class="col-md-3 text-end" th:unless="${isAuthenticated}">
             <a href="/sign-in" class="btn btn-primary">Login</a>

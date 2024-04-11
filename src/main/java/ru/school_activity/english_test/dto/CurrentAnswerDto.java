@@ -3,7 +3,6 @@ package ru.school_activity.english_test.dto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import ru.school_activity.english_test.entity.Answer;
 
 @RequiredArgsConstructor
 @Getter
