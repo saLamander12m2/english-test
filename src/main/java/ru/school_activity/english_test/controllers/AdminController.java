@@ -3,6 +3,8 @@ package ru.school_activity.english_test.controllers;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import ru.school_activity.english_test.entity.TestQuestion;
+import ru.school_activity.english_test.repository.TestQuestionRepositoryImpl;
 import ru.school_activity.english_test.service.UploadService;
 
 @Controller
@@ -23,6 +27,7 @@ import ru.school_activity.english_test.service.UploadService;
 public class AdminController {
 
     private final UploadService uploadService;
+    private final TestQuestionRepositoryImpl testQuestionRepository;
 
     @Secured("ROLE_ADMIN")
     @GetMapping()
@@ -49,12 +54,15 @@ public class AdminController {
 
     @Secured("ROLE_ADMIN")
     @GetMapping(value = "/change")
-    public String getChangePage(Model model, HttpSession httpSession){
+    public String getChangePage(Model model, HttpSession httpSession) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isAuthenticated = !(authentication instanceof AnonymousAuthenticationToken);
         model.addAttribute("isAuthenticated", isAuthenticated);
         model.addAttribute("name", httpSession.getAttribute("name"));
 
+
+        Page<TestQuestion> testQuestionPage = testQuestionRepository.findAll(0, 20);
+        log.info("Questions: ", testQuestionPage.toString());
         return "change";
     }
 }

@@ -12,10 +12,24 @@
     <div th:insert="~{fragment/header.html :: header (isAuthenticated=${isAuthenticated}, name=${name})}"></div>
 </header>
 <main>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Topic Verb</th>
+                <th scope="col">Question</th>
+                <th scope="col">Wrong Answer 1</th>
+                <th scope="col">Wrong Answer 2</th>
+                <th scope="col">Wrong Answer 3</th>
+                <th scope="col">Right Answer</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
 
+        </tbody>
+    </table>
 </main>
-
-
 <footer th:insert="~{fragment/footer.html :: footer}" class="mt-auto"></footer>
 <script src="/js/bootstrap.js"></script>
 <script src="/js/color-modes.js"></script>
