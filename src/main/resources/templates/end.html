@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>English Test</title>
-    <link rel="icon" href="/images/logo-png.png">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo-png.png}">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body class="d-flex vh-100 flex-column container-xxl" data-bs-theme="dark">
 <header>
@@ -51,13 +51,13 @@
     </div>
     <div class="row justify-content-center mt-3">
         <div class="col-6 text-center">
-            <a href="/start" class="btn btn-outline-primary">Go to new test or all your results</a>
+            <a th:href="@{/start}" class="btn btn-outline-primary">Go to new test or all your results</a>
         </div>
     </div>
 </main>
 <footer th:insert="~{fragment/footer.html :: footer}" class="mt-auto"></footer>
-<script src="/js/bootstrap.js"></script>
-<script src="/js/color-modes.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/color-modes.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

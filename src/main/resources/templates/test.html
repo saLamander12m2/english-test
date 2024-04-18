@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
-    <link rel="icon" href="/images/logo-png.png">
+    <link rel="icon" th:href="@{/images/logo-png.png}">
     <title>English Test</title>
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/js/color-modes.js"></script>
-    <link href="/css/sign-in.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <script th:src="@{/js/color-modes.js}"></script>
+    <link th:href="@{/css/sign-in.css}" rel="stylesheet">
 </head>
 <body class="d-flex vh-100 flex-column container-xxl" data-bs-theme="dark">
 <header>
@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="/test/answer" th:object="${currentAnswerDto}">
+    <form method="post" th:action="@{/test/answer}" th:object="${currentAnswerDto}">
         <div class="row justify-content-center mt-5">
             <div class="col-9 bg-dark-subtle">
                 <div class="row justify-content-center">
@@ -54,6 +54,6 @@
     </form>
 </main>
 <footer th:insert="~{fragment/footer.html :: footer}" class="mt-auto"></footer>
-<script src="/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

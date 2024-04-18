@@ -3,14 +3,14 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <script src="/js/color-modes.js"></script>
+    <script th:src="@{/js/color-modes.js}"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -91,25 +91,25 @@
         }
     </style>
 
-    <link href="/css/headers.css" rel="stylesheet">
+    <link th:href="@{/css/headers.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom h-80"
             th:fragment="header (isAuthenticated, name)">
         <div class="col-2 mb-2 mb-md-0 fl" >
-            <img src="/images/logo-png.png" alt="logo" class="img-fluid">
+            <img th:src="@{/images/logo-png.png}" alt="logo" class="img-fluid">
         </div>
         <div class="col-md-3 text-end" th:if="${isAuthenticated}">
-            <a href="/logout" class="btn btn-primary" style="display: inline">Logout</a>
+            <a th:href="@{/logout}" class="btn btn-primary" style="display: inline">Logout</a>
             <a class="btn btn-outline" style="display: inline">Hi, <span th:text="${name}"></span></a>
         </div>
         <div class="col-md-3 text-end" th:unless="${isAuthenticated}">
-            <a href="/sign-in" class="btn btn-primary">Login</a>
-            <a href="/sign-up" class="btn btn-primary">Sign up</a>
+            <a th:href="@{/sign-in}" class="btn btn-primary">Login</a>
+            <a th:href="@{/sign-up}" class="btn btn-primary">Sign up</a>
         </div>
     </header>
 </div>
-<script src="/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

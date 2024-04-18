@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>English Test</title>
-    <link rel="icon" href="/images/logo-png.png">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" th:href="@{/images/logo-png.png}">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
 <body class="d-flex vh-100 flex-column container-xxl" data-bs-theme="dark">
 <header>
@@ -25,7 +25,7 @@
         </li>
         <li class="nav-item" role="presentation" th:if="${isAdmin.toString().equals('true')}">
             <button class="nav-link" data-bs-toggle="tab">
-                <span><a href="/admin">Admin</a></span>
+                <span><a th:href="@{/admin}">Admin</a></span>
             </button>
         </li>
     </ul>
@@ -35,7 +35,7 @@
              tabindex="0">
             <div class="row justify-content-center mt-4">
                 <div class="col-4">
-                    <form method="post" action="/test/create">
+                    <form method="post" th:action="@{/test/create}">
                         <select class="form-select h-auto" required th:name="verb">
                             <option value="">Please choose the verb</option>
                             <option
@@ -81,9 +81,9 @@
 </main>
 <footer th:insert="~{fragment/footer.html :: footer}" class="mt-auto"></footer>
 
-<script src="/js/bootstrap.js"></script>
-<script src="/js/color-modes.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-<script src="/js/start.page.tab.js"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/color-modes.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/start.page.tab.js}"></script>
 </body>
 </html>
