@@ -57,7 +57,7 @@ public class StartController {
         log.info(topicVerbs.toString());
         model.addAttribute("topicVerbs", topicVerbs);
 
-        List<Test> tests = testRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
+        List<Test> tests = testRepository.findAllByAppUser(appUserDetails.getAppUser(), Sort.by(Sort.Direction.DESC, "date"));
         List<HistoryDto> historyDtoList = new ArrayList<>();
         tests.forEach(item -> historyDtoList.add(ConvertService.doFromTestToHistoryDto(item)));
         model.addAttribute("historyDtoList", historyDtoList);
